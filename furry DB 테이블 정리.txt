@@ -1,0 +1,9 @@
+DB설계
+1. user - create_id(pk), address, id, name, phone, pw, save_money(적립금), coupon_name, create_time, role(역할)
+2. basket - basket_id(pk), amount, pro_id(fk), user_id(fk)
+3. product - pro_id(pk), categoty, pro_explain, pro_image, pro_name, pro_number, pro_option, pro_price, pro_view
+4. comment- commentid(pk), content, img, pro_id(fk), user_id(fk)
+
+
+바꾼 설계
+1. user - mid(pk - Long), mpw(String - encode), email(String), name(String), address(String), phone(String), del(boolean), social(boolean)

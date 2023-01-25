@@ -1,0 +1,4 @@
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+=> 참조해서 만들어야 할 테이블을 미리 만들어둬서 생긴 오류였다.
+failed to lazily initialize a collection of role: com.friend.furry.model.Member.roleSet, could not initialize proxy - no Session
+=> @Transactional를 테스트 코드에 추가한다
