@@ -28,12 +28,15 @@ public class CustomSecurityConfig{
     private final DataSource dataSource;
     private final CustomUserDetailService userDetailService;
 
+    //자동로그인이 가능하도록 하는 기능을 이용해 DB 생성 및 자동 로그인 기능 구현.
     @Bean
     public PersistentTokenRepository persistentTokenRepository(){
         JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
         repo.setDataSource(dataSource);
         return repo;
     }
+
+    //403에러가 발생했을 때 이동시켜줄 페이지 설정
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
         return new Custom403Handler();
@@ -44,6 +47,8 @@ public class CustomSecurityConfig{
         log.info("필터 환경 설정");
         //인증이나 인가에 문제가 발생하면 로그인 폼 출력
         http.formLogin().loginPage("/member/login");
+        //Oauth2가 사용할 로그인 URL설정
+        http.oauth2Login().loginPage("/member/login");
         http.csrf().disable();
 
         http.rememberMe().key("12345678").tokenRepository(persistentTokenRepository())

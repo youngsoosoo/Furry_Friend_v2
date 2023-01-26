@@ -14,7 +14,7 @@ import java.util.Set;
 @ToString(exclude = "roleSet")
 public class Member extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mid;
 
     private String mpw;

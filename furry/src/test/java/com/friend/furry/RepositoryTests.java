@@ -45,13 +45,19 @@ public class RepositoryTests {
     @Test
     @Transactional
     public void testRead(){
-        Optional<Member> result = memberRepository.getWithRoles(100L);
+        Optional<Member> result = memberRepository.getWithRoles("user95@gmail.com");
         if(result.isPresent()){
             System.out.println(result);
             System.out.println(result.get().getRoleSet());
         }else{
             System.out.println("존재하지 않는 아이디");
         }
+    }
+
+    @Test
+    public void testReadEmail(){
+        Optional<Member> clubMember = memberRepository.findByEmail("user95@gmail.com");
+        System.out.println(clubMember.get().getRoleSet());
     }
 
 }

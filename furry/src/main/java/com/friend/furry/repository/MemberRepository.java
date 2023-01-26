@@ -1,8 +1,10 @@
 package com.friend.furry.repository;
 
 import com.friend.furry.model.Member;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -12,7 +14,14 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
         //SQL
         //select * from club_member m, club_member_role_set s
         //where m.mid = s.mid and m.mid=? and social=false
-        @Query("select m from Member m where m.mid = :mid and m.social = false")
-        Optional<Member> getWithRoles(Long mid);
+        @Query("select m from Member m where m.email = :email and m.social = false")
+        Optional<Member> getWithRoles(String email);
+
+        @EntityGraph(attributePaths = "roleSet", type = EntityGraph.EntityGraphType.LOAD)
+        @Query("select m from Member m where m.email = :email")
+        Optional<Member> findByEmail(@Param("email") String email);
+
+        //이메일 중복확인
+        boolean existsByEmail(@Param("email") String email);
 }
 
