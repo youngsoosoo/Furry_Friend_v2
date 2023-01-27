@@ -2,6 +2,7 @@ package com.friend.furry.config;
 
 import com.friend.furry.security.CustomUserDetailService;
 import com.friend.furry.security.handler.Custom403Handler;
+import com.friend.furry.security.security.gandler.CustomSocialLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -42,13 +44,19 @@ public class CustomSecurityConfig{
         return new Custom403Handler();
     }
 
+    //소셜 로그인 후 처리를 위한 클래스 설정
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler(){
+        return new CustomSocialLoginSuccessHandler(passwordEncoder());
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         log.info("필터 환경 설정");
         //인증이나 인가에 문제가 발생하면 로그인 폼 출력
         http.formLogin().loginPage("/member/login");
-        //Oauth2가 사용할 로그인 URL설정
-        http.oauth2Login().loginPage("/member/login");
+        //Oauth2가 사용할 로그인 성공 후 처리
+        http.oauth2Login().loginPage("/member/login").successHandler(authenticationSuccessHandler());
         http.csrf().disable();
 
         http.rememberMe().key("12345678").tokenRepository(persistentTokenRepository())

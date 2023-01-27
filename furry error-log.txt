@@ -1,4 +1,10 @@
+23.01.26
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
 => 참조해서 만들어야 할 테이블을 미리 만들어둬서 생긴 오류였다.
 failed to lazily initialize a collection of role: com.friend.furry.model.Member.roleSet, could not initialize proxy - no Session
 => @Transactional를 테스트 코드에 추가한다
+23.01.28
+NullPointerException
+=>CustomOAuth2USerService에 카카오 로그인에서 사용한 메서드인 getKakaoEmailAndName(paramMap)를 case 'kakao'가 아닌 
+loaduser메서드에 있어 case 'google'가 실행될 때도 자동으로 실행되어 paramMap에는 없는 값을 찾게 되어 오류났다.
+getKakaoEmailAndName 메서드를 case 'kakao' 안에서 호출해주어 오류 해결.

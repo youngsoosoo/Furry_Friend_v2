@@ -30,19 +30,25 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    //카카오 로그인 성공 후 넘어오는 데이터를 이용해서 email을 추출해서 리턴하는 메서드
-    private String getKakaoEmail(Map<String, Object> paramMap){
+    //카카오 로그인 성공 후 넘어오는 데이터를 이용해서 email과 name을 추출해서 리턴하는 메서드
+    private String[] getKakaoEmailAndName(Map<String, Object> paramMap){
         //카카오 계정 정보가 있는 Map을 추출
         Object value = paramMap.get("kakao_account");
         LinkedHashMap accountMap = (LinkedHashMap) value;
         String email = (String)accountMap.get("email");
+
+        value = accountMap.get("profile");
+        accountMap = (LinkedHashMap) value;
+        String name = (String) accountMap.get("nickname");
+        String[] li = {email, name};
         log.info("카카오 계정 이메일: " + email);
-        return email;
+        log.info("카카오 계정 이름: " + name);
+        return li;
     }
 
     //email정보가 있으면 그에 해당하는 DTO를 리턴하고 없으면
     //회원가입하고 리턴하는 사용자 정의 메서드
-    private MemberSecurityDTO generateDTO(String email, Map<String, Object> params){
+    private MemberSecurityDTO generateDTO(String email, String name, Map<String, Object> params){
         //email을 가지고 데이터 찾아오기
         Optional<Member> result = memberRepository.findByEmail(email);
         if(result.isEmpty()){
@@ -50,13 +56,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             Member member = Member.builder()
                     .mpw(passwordEncoder.encode("1111"))
                     .email(email)
+                    .name(name)
                     .social(true)
                     .build();
             member.addRole(MemberRole.USER);
             memberRepository.save(member);
 
             //회원가입에 성공한 정보 리턴
-            MemberSecurityDTO memberSecurityDTO = new MemberSecurityDTO("1111", email, null, null, null, false, true, Arrays.asList(new SimpleGrantedAuthority(
+            MemberSecurityDTO memberSecurityDTO = new MemberSecurityDTO("1111", email, name, null, null, false, true, Arrays.asList(new SimpleGrantedAuthority(
                     "Role_USER"
             )));
             memberSecurityDTO.setProps(params);
@@ -80,25 +87,33 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     //로그인 성공했을 때 호출되는 메서드
+    //이메일을 가진 사용자를 찾아보고 존재하지 않다면 자동으로 회원가입 시키는 메서드 반환 generateDTO
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException{
-//로그인에 성공한 서비스의 정보가져오기
+        //로그인에 성공한 서비스의 정보가져오기
         ClientRegistration clientRegistration = userRequest.getClientRegistration();
         String clientName = clientRegistration.getClientName();
         log.info("Service Name: " + clientName);
 
-//계정에 대한 정보 가져오기
+        //계정에 대한 정보 가져오기
         OAuth2User oAuth2User = super.loadUser(userRequest);
         Map<String, Object> paramMap = oAuth2User.getAttributes();
         log.info("paramMap:"+paramMap);
         String email = null;
+        String name = null;
         switch (clientName.toLowerCase()){
             case "kakao":
-                email = getKakaoEmail(paramMap);
+                String[] li = getKakaoEmailAndName(paramMap);
+                email = li[0];
+                name = li[1];
                 break;
+            case "google":
+                email = (String)paramMap.get("email");
+                break;
+
         }
         log.info("email:"+email);
 
-        return generateDTO(email,paramMap);
+        return generateDTO(email, name, paramMap);
     }
 }

@@ -60,4 +60,11 @@ public class RepositoryTests {
         System.out.println(clubMember.get().getRoleSet());
     }
 
+    @Test
+    public void testUpdate(){
+        String email = "lovepys01@naver.com";
+        String mpw = passwordEncoder.encode("1234");
+        memberRepository.updatePassword(mpw, email);
+    }
+
 }
