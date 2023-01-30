@@ -1,18 +1,19 @@
-#Furry Project  
+# Furry Project  
 
 ---
-###Front-end###  
-*이 윤성*
+### Front-end  
+**이 윤성**
 
-####Skill & Stack####
+#### Skill & Stack
 
-*React*
-*JavaSciprt*
+**React**
+**JavaSciprt**
 
 ---
-###Back-end###  
-*박용수*
+### Back-end  
+**박용수**
 
-####Skill & Stack####
-*Spring*
-*Java*
+### Skill & Stack  
+
+**Spring**
+**Java**
