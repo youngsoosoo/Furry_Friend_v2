@@ -7,5 +7,7 @@ DB설계
 바꾼 설계
 1. member - mid(pk - Long), mpw(String - encode), email(String), name(String), address(String), phone(String), del(boolean), social(boolean)
 2. basket - basket_id(pk), amount, pro_id(fk), mid(fk)
-3. product - pro_id(pk), categoty, pro_explain, pro_image, pro_name, pro_number, pro_option, pro_price, pro_view
-4. comment- commentid(pk), content, img, pro_id(fk), mid(fk)
+3. product - pid(pk), pcategoty, pexplain, pname, pprice, pview, pdiscount, del, reg, mod
+4. productimage - iid(pk), uuid, imgName, path, product_pid(fk)
+5. comment- commentid(pk), content, img, pro_id(fk), mid(fk)
+6. receipt - rid(pk - Long), regdate, moddate(환불이나 교환 시간), pid(fk), mid(fk), ramount, rprice, rmethod

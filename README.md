@@ -8,3 +8,6 @@
 	수정하는 페이지로 이동할 수 있도록 수정. 비밀번호 업데이트를 위한 Query문 작성을 위해 repository 수정 후 TEST. <br/>
 <em>2023-01-28</em> 카카오 로그인에서 수정한 배열을 찾는 메서드를 case 'kakao' 바깥에서 호출해 case 'google'를 호출했을 때
 	오류가 나서 수정했다. google 로그인 연동 완료.<br/>
+<em>2023-01-29</em> 스프링 시큐리티 중 로그인 성공시 핸들러를 커스터 마이징한 클래스를 작성 및 DB model 생성<br/>
+<em>2023-01-30</em> DB 테이블 수정 2개의 테이블 설계(영수증, 상품 이미지), repository 작성, Test 클래스에서 product 테이블 및
+	product_image 테이블에 값을 insert<br/>

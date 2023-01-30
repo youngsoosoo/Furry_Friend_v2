@@ -2,7 +2,7 @@ package com.friend.furry.config;
 
 import com.friend.furry.security.CustomUserDetailService;
 import com.friend.furry.security.handler.Custom403Handler;
-import com.friend.furry.security.security.gandler.CustomSocialLoginSuccessHandler;
+import com.friend.furry.security.security.handler.CustomSocialLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
