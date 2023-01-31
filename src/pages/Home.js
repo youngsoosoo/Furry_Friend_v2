@@ -1,19 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
+
+/* Header import */
+import Header from '../components/Header/Header';
 
 function Home(){
     return(
     <>
-        <Title>
-            여긴 홈~!
-        </Title>
+        <Header />
+
+
     </>
     )
 }
 
-const Title = styled.h2`
-    font-family : "tway";
-`
+
 
 
 export default Home;
