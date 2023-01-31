@@ -35,9 +35,10 @@ const Positioner = styled.div`
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 0px;
-    width: 100%;
-`;
+    top: 35px;
+    left : calc(50vw - 600px);
+    width: 1200px;
+    `
 
 // 흰 배경, 내용 중간 정렬
 const WhiteBackground = styled.div`
@@ -45,6 +46,8 @@ const WhiteBackground = styled.div`
     display: flex;
     justify-content: center;
     height: auto;
+
+    
 `
 
 // 해더의 내용
@@ -63,23 +66,24 @@ const Title = styled.div`
     letter-spacing: 5px;
     font-family: 'tway';
 
-    margin: 2vw;
+    margin: 30px;
 
 `
 
 //검색창
 
 const Search = styled.div`
-margin: 2vw;
+margin: 30px;
 
 position: relative;
 width: 450px;
 
 `
 const Input = styled.input`
+
 width: 400px;
 
-height: 27px;
+height: 30px;
 
 border : 3px solid #8ec64e;
 border-radius : 24px;
@@ -91,7 +95,6 @@ const IMG = styled.span`
 position: absolute;
 
 top : 7px;
-
 right : 45px;
 
 margin: 0;
@@ -99,15 +102,17 @@ margin: 0;
 
 //장바구니
 const MY = styled.button`
-    margin: 0.5vw;
-    padding : 1vw;
+    margin: 5px;
     border : 0px;
     background: #ffffff;
     line-height: 0;
+
+    overflow : hidden;
+    z-index:99;
 `
 const Cart = styled.button`
-    margin: 0.5vw;
-    padding : 1vw;
+    margin: 5px;
+    
     border : 0px;
     background: #ffffff;
     line-height: 0;
