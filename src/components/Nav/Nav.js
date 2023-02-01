@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-import styled from "styled-components";
+import styled ,{css} from "styled-components";
 
 /*nav바 밑에 요소 불러오기 */
 import NavDetail from "./NavDetail";
@@ -11,18 +11,45 @@ export default function Nav(){
 
     const clickPcategory = (pcategory) => {
         setPcategory(pcategory)
-        console.log(pcategory)
     }
     
+    const ContainerSelected = {
+        background : '#e8dc8a',
+        borderRadius : '24px'
+    }
+    
+    if (pcategory === 'best'){
+        console.log(ContainerSelected)
+    }
+    console.log(pcategory)
     return(
         <Positioner>
             <WhiteBackground>
                 <NavContents>
                     <Spacer />
-                    <Container onClick={()=>clickPcategory('best')}><P>추천상품</P></Container>
-                    <Container onClick={()=>clickPcategory('dog')}><P>강아지</P></Container>
-                    <Container><P>고양이</P></Container>
-                    <Container><P>고라니</P></Container>
+                    <Container 
+                        style={pcategory === 'best' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        onClick={()=>clickPcategory('best')}>
+                        <P>추천상품</P>
+                    </Container>
+
+                    <Container 
+                        style={pcategory === 'dog' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        onClick={()=>clickPcategory('dog')}>
+                        <P>강아지</P>
+                    </Container>
+
+                    <Container 
+                        style={pcategory === 'cat' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        onClick={()=>clickPcategory('cat')}>
+                        <P>고양이</P>
+                    </Container>
+                    
+                    <Container 
+                        style={pcategory === '고라니' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        onClick={()=>clickPcategory('고라니')}>
+                        <P>고라니</P>
+                    </Container>
                 </NavContents>
                 
                 <NavDetail pcategory={pcategory} />
@@ -53,8 +80,6 @@ const WhiteBackground = styled.div`
     align-items: center;
     background: #ffffff;
 
-    
-
 `
 // Nav 콘텐츠
 const NavContents = styled.div`
@@ -68,17 +93,18 @@ const NavContents = styled.div`
 
 `
 
-const Container = styled.div`
+const Container = styled.button`
+    background: #ffffff;
+    border: 0px;
+    font-size : 1rem;
 
     text-align: center;
 
-    background : ${props => props.color } ;
 
-&:hover{
-    background-color: #e8dc8a;
-    border-radius : 24px;
-}
-
+    &:hover{
+        background-color: #e8dc8a;
+        border-radius : 24px;
+    }
 
 `
 
