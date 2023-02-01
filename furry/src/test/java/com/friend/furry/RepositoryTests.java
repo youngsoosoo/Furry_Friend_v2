@@ -1,21 +1,17 @@
 package com.friend.furry;
 
-import com.friend.furry.model.Member;
-import com.friend.furry.model.MemberRole;
-import com.friend.furry.model.Product;
-import com.friend.furry.model.ProductImage;
+import com.friend.furry.model.*;
 import com.friend.furry.repository.MemberRepository;
 import com.friend.furry.repository.ProductImageRepository;
 import com.friend.furry.repository.ProductRepository;
+import com.friend.furry.repository.ReviewRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -73,10 +69,10 @@ public class RepositoryTests {
     }
 
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    ProductImageRepository productImageRepository;
+    private ProductImageRepository productImageRepository;
 
     @Test
     public void insertproduct(){
@@ -102,7 +98,53 @@ public class RepositoryTests {
             }
         });
     }
-
     
+    @Test
+    public void readproduct() {
+        List<Object[]> list = productRepository.getProductWithAll(10L);
+        for(Object [] ar: list){
+            System.out.println(Arrays.toString(ar));
+        }
+    }
 
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+
+
+    @Test
+    public void insertReview(){
+        IntStream.rangeClosed(1, 20).forEach(i -> {
+            //상품 번호
+            Long pid = (long)(Math.random() * 10) + 1;
+            //회원번호
+            Long mid = (long)(Math.random() * 3) + 1;
+
+            Product product = Product.builder()
+                    .pid(pid)
+                    .build();
+            Member member = Member.builder()
+                    .mid(mid)
+                    .build();
+            Review review = Review.builder()
+                    .product(product)
+                    .member(member)
+                    .rgrade((int)(Math.random()*5)+1)
+                    .rtext("상품 리뷰..." + i)
+                    .build();
+            reviewRepository.save(review);
+        });
+    }
+
+    @Test
+    @Transactional
+    public void getReviews(){
+        Product product =Product.builder()
+                .pid(10L).build();
+        List<Review> result = reviewRepository.findByProduct(product);
+        result.forEach(review -> {
+            System.out.println(review.getRid());
+            System.out.println(review.getMember().getEmail());
+        });
+    }
 }

@@ -9,5 +9,5 @@ DB설계
 2. basket - basket_id(pk), amount, pro_id(fk), mid(fk)
 3. product - pid(pk), pcategoty, pexplain, pname, pprice, pview, pdiscount, del, reg, mod
 4. productimage - iid(pk), uuid, imgName, path, product_pid(fk)
-5. comment- commentid(pk), content, img, pro_id(fk), mid(fk)
+5. review - rid(pk), rtext, rgrade, pro_id(fk), mid(fk)
 6. receipt - rid(pk - Long), regdate, moddate(환불이나 교환 시간), pid(fk), mid(fk), ramount, rprice, rmethod

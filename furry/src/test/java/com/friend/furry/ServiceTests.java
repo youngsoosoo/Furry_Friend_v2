@@ -2,6 +2,7 @@ package com.friend.furry;
 
 import com.friend.furry.security.dto.MemberJoinDTO;
 import com.friend.furry.service.MemberService;
+import com.friend.furry.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ServiceTests {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private ProductService productService;
 
     @Test
     public void testJoin() throws MemberService.MidExistException {
@@ -21,4 +25,10 @@ public class ServiceTests {
                 .phone("01082488674").build();
         memberService.join(dto);
     }
+
+    @Test
+    public void getProduct(){
+        System.out.println(productService.getProduct(10L));
+    }
+
 }
