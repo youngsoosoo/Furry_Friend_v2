@@ -62,7 +62,7 @@ const TopContents = styled.div`
     flex-direction: row;
     align-items: right;
 
-    grid-template-columns: 50px 50px 765px 90px 100px;
+    grid-template-columns: 220px 50px 600px 90px 100px;
 `
 
 //글씨
