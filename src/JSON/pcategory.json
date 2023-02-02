@@ -1,0 +1,17 @@
+{
+    "pcategory" :[
+        {
+            "type" : "dog",
+            "category" : "dog-food"
+        },
+        {
+            "type" : "dog",
+            "category" : "dog-snack"
+        },
+        {
+            "type" : "dog",
+            "category" : "dog-tool"
+        }
+
+    ]
+}

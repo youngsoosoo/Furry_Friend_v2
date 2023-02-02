@@ -1,9 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
+// export default function NavButton(){
+
+// }
+
+
 export default function NavDetail(props){
 
     const pcategory = props.pcategory
+
 
     return(
         
@@ -11,7 +17,19 @@ export default function NavDetail(props){
             <WhiteBackground>
                 <NavDetailContents>
                     <Spacer />
+                    <Button>
                     {pcategory}
+                    </Button>
+                    <Button>
+                    {pcategory}
+                    </Button>
+                    <Button>
+                    {pcategory}
+                    </Button>
+                    <Button>
+                    {pcategory}
+                    </Button>
+                    <Spacer />
                 </NavDetailContents>
             </WhiteBackground>
         </Positioner>
@@ -53,8 +71,19 @@ const NavDetailContents = styled.div`
     flex-direction: row;
     align-items: right;
 
-    grid-template-columns: 220px 150px 150px 150px 150px;
+    grid-template-columns: 300px 150px 150px 150px 150px 300px;
 
+`
+
+const Button = styled.button`
+width: 60px;
+height: 60px;
+
+border: 3px solid #ff9dc5;
+border-radius: 20px;
+box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.1);
+
+background : #fae1f6;
 `
 
 const Spacer = styled.div`
