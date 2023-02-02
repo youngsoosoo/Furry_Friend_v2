@@ -6,16 +6,16 @@ export default function NavDetail(props){
     const pcategory = props.pcategory
 
     return(
-        <>
-            <Positioner>
-                <WhiteBackground>
-                    <NavDetailContents>
-                        <Spacer />
-                        {pcategory}
-                    </NavDetailContents>
-                </WhiteBackground>
-            </Positioner>
-        </>
+        
+        <Positioner>
+            <WhiteBackground>
+                <NavDetailContents>
+                    <Spacer />
+                    {pcategory}
+                </NavDetailContents>
+            </WhiteBackground>
+        </Positioner>
+        
         
     )
 }
