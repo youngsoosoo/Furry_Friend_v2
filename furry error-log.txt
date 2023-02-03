@@ -8,3 +8,10 @@ NullPointerException
 =>CustomOAuth2USerService에 카카오 로그인에서 사용한 메서드인 getKakaoEmailAndName(paramMap)를 case 'kakao'가 아닌 
 loaduser메서드에 있어 case 'google'가 실행될 때도 자동으로 실행되어 paramMap에는 없는 값을 찾게 되어 오류났다.
 getKakaoEmailAndName 메서드를 case 'kakao' 안에서 호출해주어 오류 해결.
+
+23.02.01
+could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+=> MySQL에서 문법 오류가 나는 것이었는데 처음 MariaDB로 실행을 할 때는 아무 문제가 없었고 또한 다른 조인을 했을 떄도 전혀 문제가
+없었는데 조인을 한 문장은 where 절을 통해 조건을 따로 지정해주었는데 이 차이점이 있었고 group by에 조인한 모든 테이블의 순서를
+정해서 써주어야 한다.
+

@@ -8,6 +8,10 @@ import com.friend.furry.repository.ReviewRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -104,6 +108,24 @@ public class RepositoryTests {
         List<Object[]> list = productRepository.getProductWithAll(10L);
         for(Object [] ar: list){
             System.out.println(Arrays.toString(ar));
+        }
+    }
+
+    @Test
+    public void ProductfindAll(){
+        List<Product> products = productRepository.findAll();
+        for(Product ar : products){
+            System.out.println(ar);
+        }
+    }
+    @Test
+    //JOIN 연습
+    public void joinTest(){
+        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "pid"));
+        Page<Object []> result = productRepository.getList(pageable);
+
+        for(Object [] objects:result.getContent()){
+            System.out.println(Arrays.toString(objects));
         }
     }
 

@@ -2,6 +2,8 @@ package com.friend.furry.service;
 
 import com.friend.furry.model.Product;
 import com.friend.furry.model.ProductImage;
+import com.friend.furry.security.dto.PageRequestDTO;
+import com.friend.furry.security.dto.PageResponseDTO;
 import com.friend.furry.security.dto.ProductDTO;
 import com.friend.furry.security.dto.ProductImageDTO;
 
@@ -15,7 +17,7 @@ public interface ProductService {
     Long register(ProductDTO productDTO);
 
     //데이터 목록을 위한 메서드
-    //PageResponseDTO<MovieDTO, Object []> getList(PageRequestDTO requestDTO);
+    PageResponseDTO<ProductDTO, Object []> getList(PageRequestDTO requestDTO);
 
     ProductDTO getProduct(Long pid);
 
