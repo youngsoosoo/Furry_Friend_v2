@@ -18,10 +18,8 @@ export default function Nav(){
         borderRadius : '24px'
     }
     
-    if (pcategory === 'best'){
-        console.log(ContainerSelected)
-    }
-    console.log(pcategory)
+    
+
     return(
         <Positioner>
             <WhiteBackground>
@@ -52,7 +50,7 @@ export default function Nav(){
                     </Container>
                 </NavContents>
                 
-                <NavDetail pcategory={pcategory} />
+                {pcategory ? <NavDetail pcategory={pcategory} /> : <> </>}
             </WhiteBackground>
         </Positioner>
 
