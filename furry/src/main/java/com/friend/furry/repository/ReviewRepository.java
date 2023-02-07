@@ -20,4 +20,12 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     //이름을 기반으로 하는 메서드 생성이 가능
     @EntityGraph(attributePaths = {"product"}, type = EntityGraph.EntityGraphType.FETCH)
     List<Review> findByProduct(Product product);
+
+    //회원 정보를 가지고 데이터를 삭제하는 메서드
+    void deleteByMember(Member member);
+
+    //JPQL을 이용한 쿼리 작성 가능
+    @Modifying
+    @Query("update Review r set r.member=null where r.member.mid = :mid")
+    void updateByMember(@Param("mid") Long mid);
 }

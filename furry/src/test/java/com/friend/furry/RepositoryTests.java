@@ -5,6 +5,8 @@ import com.friend.furry.repository.MemberRepository;
 import com.friend.furry.repository.ProductImageRepository;
 import com.friend.furry.repository.ProductRepository;
 import com.friend.furry.repository.ReviewRepository;
+import com.friend.furry.security.dto.ProductDTO;
+import com.friend.furry.security.dto.ProductImageDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
@@ -123,7 +126,6 @@ public class RepositoryTests {
     public void joinTest(){
         Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "pid"));
         Page<Object []> result = productRepository.getList(pageable);
-
         for(Object [] objects:result.getContent()){
             System.out.println(Arrays.toString(objects));
         }
@@ -136,7 +138,7 @@ public class RepositoryTests {
 
     @Test
     public void insertReview(){
-        IntStream.rangeClosed(1, 20).forEach(i -> {
+        IntStream.rangeClosed(1, 10).forEach(i -> {
             //상품 번호
             Long pid = (long)(Math.random() * 10) + 1;
             //회원번호
@@ -168,5 +170,12 @@ public class RepositoryTests {
             System.out.println(review.getRid());
             System.out.println(review.getMember().getEmail());
         });
+    }
+
+    @Test
+    @Transactional
+    @Commit
+    public void updateByMember(){
+        reviewRepository.updateByMember(3L);
     }
 }

@@ -15,3 +15,9 @@ could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.except
 없었는데 조인을 한 문장은 where 절을 통해 조건을 따로 지정해주었는데 이 차이점이 있었고 group by에 조인한 모든 테이블의 순서를
 정해서 써주어야 한다.
 
+23.02.06
+Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'furry.productima1_.iid' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+=> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+	위의 오류와 같은 문제의 오류였는데 group by에 하나의 테이블만 올리기 위해서는 위의 구문을 mysql에서 실행해주면 된다.
+	5.7부터 바뀌어서 그렇다고 한다.
+

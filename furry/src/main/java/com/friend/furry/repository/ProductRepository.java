@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     //상품 정보를 가지고 상품 이미지 정보와 리뷰개수 및 grade의 평균을 구해주는 메서드 페이지 단위로 구하기
-    @Query("select p, pi, avg(coalesce(r.rgrade, 0)), count(r) from Product p left outer join ProductImage pi on pi.product = p" +
-            " left outer join Review r on r.product = p group by pi, r, p")
+    @Query("select p, pi, avg(coalesce(r.rgrade, 0)), count(distinct r) from Product p left outer join ProductImage pi on pi.product = p" +
+            " left outer join Review r on r.product = p group by p")
     Page<Object []> getList(Pageable pageable);
 
     @Query("select p from Product p")

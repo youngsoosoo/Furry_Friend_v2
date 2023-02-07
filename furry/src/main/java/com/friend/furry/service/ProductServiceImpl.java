@@ -49,7 +49,6 @@ public class ProductServiceImpl implements ProductService{
         Pageable pageable = requestDTO.getPageable(Sort.by("pid").descending());
         //데이터베이스에 요청
         Page<Object []> result = productRepository.getList(pageable);
-
         //Object 배열을 ProductDTO 타입으로 변경하기 위해서
         //함수를 생성
         //첫 번째 데이터가 Product
@@ -58,6 +57,7 @@ public class ProductServiceImpl implements ProductService{
         //네 번째 데이터가 리뷰의 개수
         Function<Object [], ProductDTO> fn = (arr -> entitiesToDTO((Product) arr[0],
                 (List<ProductImage>) (Arrays.asList((ProductImage)arr[1])), (Double) arr[2], (Long) arr[3]));
+        System.out.println(fn);
         return new PageResponseDTO<>(result, fn);
     }
 
@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService{
         //데이터 베이스에서 결과 가져오기
         List<Object []> result = productRepository.getProductWithAll(pid);
         Product product = (Product) result.get(0)[0];
-
+        System.out.println(result);
         List<ProductImage> productImageList = new ArrayList<>();
         result.forEach(arr -> {
             ProductImage productImage = (ProductImage) arr[1];
@@ -74,11 +74,6 @@ public class ProductServiceImpl implements ProductService{
         });
         double avg = (Double) result.get(0)[2];
         Long reviewCnt = (Long)result.get(0)[3];
-
-        System.out.println("product" + product);
-        System.out.println("productImage" + productImageList);
-        System.out.println("avg" + avg);
-        System.out.println("reviewcnt" + reviewCnt);
 
         return entitiesToDTO(product, productImageList, avg, reviewCnt);
     }

@@ -61,7 +61,7 @@ public interface ProductService {
 
     //검색 결과를 DTO로 변환해주는 메서드
     default ProductDTO entitiesToDTO(Product product, List<ProductImage> productImages, double avg, Long reviewCnt){
-        ProductDTO movieDTO = ProductDTO.builder()
+        ProductDTO productDTO = ProductDTO.builder()
                 .pid(product.getPid())
                 .pcategory(product.getPcategory())
                 .pexplain(product.getPexplain())
@@ -80,10 +80,10 @@ public interface ProductService {
                     .uuid(productImage.getUuid())
                     .build();
         }).collect(Collectors.toList());
-        movieDTO.setImageDTOList(productImageDTOList);
-        movieDTO.setAvg(avg);
-        movieDTO.setReviewCnt(reviewCnt);
+        productDTO.setImageDTOList(productImageDTOList);
+        productDTO.setAvg(avg);
+        productDTO.setReviewCnt(reviewCnt);
 
-        return movieDTO;
+        return productDTO;
     }
 }
