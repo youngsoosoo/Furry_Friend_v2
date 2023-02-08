@@ -12,7 +12,7 @@ export default function Nav({pcategory,clickPcategory}){
         border : '0px',
         borderRadius : '24px',
         boxShadow: '-10px -10px 15px rgba(255,255,255,0.5), 10px 10px 15px rgba(70,70,70,0.12)'
-    }       
+    }      
 
     return(
         <Positioner>
@@ -20,28 +20,29 @@ export default function Nav({pcategory,clickPcategory}){
                 <NavContents>
                     <Spacer />
                     <Container 
-                        style={pcategory === 'best' ? 
+                        onClick={()=>clickPcategory('best')}
+                        style={pcategory.includes('best') ? 
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
-                        onClick={()=>clickPcategory('best')}>
+                        >
                         <P>추천상품</P>
                     </Container>
 
                     <Container 
-                        style={pcategory === 'dog' ? 
+                        style={pcategory.includes('dog') ? 
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         onClick={()=>clickPcategory('dog')}>
                         <P>강아지</P>
                     </Container>
 
                     <Container 
-                        style={pcategory === 'cat' ? 
+                        style={pcategory.includes('cat') ? 
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         onClick={()=>clickPcategory('cat')}>
                         <P>고양이</P>
                     </Container>
                     
                     <Container 
-                        style={pcategory === '고라니' ?
+                        style={pcategory.includes('고라니') ?
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         onClick={()=>clickPcategory('고라니')}>
                         <P>고라니</P>

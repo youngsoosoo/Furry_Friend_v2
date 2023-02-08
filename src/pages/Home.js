@@ -14,7 +14,7 @@ import Item from '../components/Item/Item';
 
 function Home(){
 
-    const [pcategory , setPcategory] = useState(null)
+    const [pcategory , setPcategory] = useState('animal')
 
     const clickPcategory = (pcategory) => {
         setPcategory(pcategory)
