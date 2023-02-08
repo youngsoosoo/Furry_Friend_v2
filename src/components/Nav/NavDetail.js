@@ -1,40 +1,49 @@
 import React from "react";
 import styled from "styled-components";
 
-// export default function NavButton(){
+/*json파일 불러오기*/
+import pcategoryList from "../../JSON/pcategory.json"
 
-// }
+function ButtonList({item,pcategory}){
+    
+    /*item은 json데이터 */
+    /*pcategory는 props데이터*/
+
+    return(
+        <>
+
+        {pcategory === item.type
+        ?
+        <>
+        <Button>
+            {item.name}
+        </Button>
+        </>
+        :
+        <>
+        </>
+        }
+        
+        </>
+    )
+}
 
 
 export default function NavDetail(props){
 
+    /* props Nav -> NavDetail -> ButtonList */
     const pcategory = props.pcategory
 
-
     return(
-        
         <Positioner>
             <WhiteBackground>
                 <NavDetailContents>
                     <Spacer />
-                    <Button>
-                    {pcategory}
-                    </Button>
-                    <Button>
-                    {pcategory}
-                    </Button>
-                    <Button>
-                    {pcategory}
-                    </Button>
-                    <Button>
-                    {pcategory}
-                    </Button>
-                    <Spacer />
+                    {pcategoryList.pcategory.map((item)=>
+                    <ButtonList item={item} id={item.id} pcategory={pcategory} />)}
                 </NavDetailContents>
             </WhiteBackground>
         </Positioner>
-        
-        
     )
 }
 
@@ -57,10 +66,7 @@ const WhiteBackground = styled.div`
     height: 50px;
     
     flex-direction: row;
-    align-items: center;
-    background: #ffffff;
-
-    
+    align-items: center;    
 
 `
 // NavDetail 콘텐츠
@@ -71,21 +77,25 @@ const NavDetailContents = styled.div`
     flex-direction: row;
     align-items: right;
 
-    grid-template-columns: 300px 150px 150px 150px 150px 300px;
+    grid-template-columns: 220px repeat(10,100px);
+
 
 `
 
 const Button = styled.button`
-width: 60px;
-height: 60px;
+width: 90px;
+height: 40px;
 
-border: 3px solid #ff9dc5;
 border-radius: 20px;
 box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.1);
 
-background : #fae1f6;
+border: 0px;
+background-color: #FFFFFF;
+
+font-family : 'tway';
+
 `
 
 const Spacer = styled.div`
-
+width: 300px;
 `

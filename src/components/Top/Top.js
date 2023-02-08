@@ -52,7 +52,7 @@ const GreyBackground = styled.div`
 
     flex-direction: row;
     align-items: center;
-    background: #e2e2e2;
+    
 `
 
 const TopContents = styled.div`

@@ -1,16 +1,59 @@
 {
     "pcategory" :[
         {
+            "id" : 0,
             "type" : "dog",
-            "category" : "dog-food"
+            "category" : "dog-food",
+            "name" : "사료"
         },
         {
+            "id" : 1,
             "type" : "dog",
-            "category" : "dog-snack"
+            "category" : "dog-snack",
+            "name" : "간식"
         },
         {
+            "id" : 2,
             "type" : "dog",
-            "category" : "dog-tool"
+            "category" : "dog-tool",
+            "name" : "애견용품"
+        },
+        {
+            "id" : 3,
+            "type" : "cat",
+            "category" : "cat-food",
+            "name" : "사료"
+        },
+        {
+            "id" : 4,
+            "type" : "cat",
+            "category" : "cat-snack",
+            "name" : "간식"
+
+        },
+        {
+            "id" : 5,
+            "type" : "cat",
+            "category" : "cat-tool",
+            "name" : "애묘용품"
+        },
+        {
+            "id" : 6,
+            "type" : "고라니",
+            "category" : "고라니-food",
+            "name" : "사료"
+        },
+        {
+            "id" : 7,
+            "type" : "고라니",
+            "category" : "고라니-snack",
+            "name" : "간식"
+        },
+        {
+            "id" : 8,
+            "type" : "고라니",
+            "category" : "고라니-tool",
+            "name" : "고라니"
         }
 
     ]

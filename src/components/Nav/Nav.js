@@ -14,8 +14,10 @@ export default function Nav(){
     }
     
     const ContainerSelected = {
-        background : '#e8dc8a',
-        borderRadius : '24px'
+        background : '#ffffff',
+        border : '0px',
+        borderRadius : '24px',
+        boxShadow: '-10px -10px 15px rgba(255,255,255,0.5), 10px 10px 15px rgba(70,70,70,0.12)'
     }
     
     
@@ -26,25 +28,29 @@ export default function Nav(){
                 <NavContents>
                     <Spacer />
                     <Container 
-                        style={pcategory === 'best' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        style={pcategory === 'best' ? 
+                        {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         onClick={()=>clickPcategory('best')}>
                         <P>추천상품</P>
                     </Container>
 
                     <Container 
-                        style={pcategory === 'dog' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        style={pcategory === 'dog' ? 
+                        {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         onClick={()=>clickPcategory('dog')}>
                         <P>강아지</P>
                     </Container>
 
                     <Container 
-                        style={pcategory === 'cat' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        style={pcategory === 'cat' ? 
+                        {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         onClick={()=>clickPcategory('cat')}>
                         <P>고양이</P>
                     </Container>
                     
                     <Container 
-                        style={pcategory === '고라니' ? {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius} : {}} 
+                        style={pcategory === '고라니' ?
+                        {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         onClick={()=>clickPcategory('고라니')}>
                         <P>고라니</P>
                     </Container>
@@ -69,14 +75,14 @@ const Positioner = styled.div`
 
 `;
 
-// 회색 배경
+
 const WhiteBackground = styled.div`
     width: 100%;
     height: 50px;
     
     flex-direction: row;
     align-items: center;
-    background: #ffffff;
+    
 
 `
 // Nav 콘텐츠
@@ -92,15 +98,19 @@ const NavContents = styled.div`
 `
 
 const Container = styled.button`
-    background: #ffffff;
-    border: 0px;
-    font-size : 1rem;
 
+    width : 120px;
+
+    background-color: #e2e2e2;
+
+    border: 0px;
+    font-size : 1rem;   
     text-align: center;
 
 
+
     &:hover{
-        background-color: #e8dc8a;
+        background-color: #f1e87c;
         border-radius : 24px;
     }
 

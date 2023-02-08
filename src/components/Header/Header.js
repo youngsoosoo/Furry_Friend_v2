@@ -42,7 +42,7 @@ const Positioner = styled.div`
 
 // 흰 배경, 내용 중간 정렬
 const WhiteBackground = styled.div`
-    background: white;
+    
     display: flex;
     justify-content: center;
     height: auto;
@@ -104,18 +104,22 @@ margin: 0;
 const MY = styled.button`
     margin: 5px;
     border : 0px;
-    background: #ffffff;
+    
     line-height: 0;
 
     overflow : hidden;
     z-index:99;
+
+    background-color: #e2e2e2;
 `
 const Cart = styled.button`
     margin: 5px;
     
     border : 0px;
-    background: #ffffff;
+
     line-height: 0;
+
+    background-color: #e2e2e2;
 `
 const ICON = styled.p`
 font-size : 2rem;
