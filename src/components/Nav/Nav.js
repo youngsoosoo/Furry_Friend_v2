@@ -5,22 +5,14 @@ import styled ,{css} from "styled-components";
 import NavDetail from "./NavDetail";
 
 
-export default function Nav(){
-
-    const [pcategory , setPcategory] = useState(null)
-
-    const clickPcategory = (pcategory) => {
-        setPcategory(pcategory)
-    }
+export default function Nav({pcategory,clickPcategory}){
     
     const ContainerSelected = {
         background : '#ffffff',
         border : '0px',
         borderRadius : '24px',
         boxShadow: '-10px -10px 15px rgba(255,255,255,0.5), 10px 10px 15px rgba(70,70,70,0.12)'
-    }
-    
-    
+    }       
 
     return(
         <Positioner>
@@ -56,7 +48,7 @@ export default function Nav(){
                     </Container>
                 </NavContents>
                 
-                {pcategory ? <NavDetail pcategory={pcategory} /> : <> </>}
+                {pcategory ? <NavDetail pcategory={pcategory} clickPcategory={clickPcategory} /> : <> </>}
             </WhiteBackground>
         </Positioner>
 
@@ -100,6 +92,7 @@ const NavContents = styled.div`
 const Container = styled.button`
 
     width : 120px;
+    height: 45px;
 
     background-color: #e2e2e2;
 

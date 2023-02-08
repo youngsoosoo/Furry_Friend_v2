@@ -4,18 +4,17 @@ import styled from "styled-components";
 /*json파일 불러오기*/
 import pcategoryList from "../../JSON/pcategory.json"
 
-function ButtonList({item,pcategory}){
+function ButtonList({item,pcategory,clickPcategory}){
     
     /*item은 json데이터 */
-    /*pcategory는 props데이터*/
 
     return(
         <>
 
-        {pcategory === item.type
+        {pcategory.includes(item.type)
         ?
         <>
-        <Button>
+        <Button onClick={()=>clickPcategory(item.category)}>
             {item.name}
         </Button>
         </>
@@ -29,10 +28,8 @@ function ButtonList({item,pcategory}){
 }
 
 
-export default function NavDetail(props){
-
-    /* props Nav -> NavDetail -> ButtonList */
-    const pcategory = props.pcategory
+export default function NavDetail({pcategory,clickPcategory}){
+    
 
     return(
         <Positioner>
@@ -40,7 +37,7 @@ export default function NavDetail(props){
                 <NavDetailContents>
                     <Spacer />
                     {pcategoryList.pcategory.map((item)=>
-                    <ButtonList item={item} id={item.id} pcategory={pcategory} />)}
+                    <ButtonList item={item} id={item.id} pcategory={pcategory} clickPcategory={clickPcategory} />)}
                 </NavDetailContents>
             </WhiteBackground>
         </Positioner>
