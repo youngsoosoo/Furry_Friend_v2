@@ -11,9 +11,15 @@ function ItemList({item,pcategory}){
             {item.pcategory.includes(pcategory)
             ?
             <Frame>
-            
-            {item.pname}
-            {item.pprice}
+            <Img src='' alt='x' />
+            <Name>
+                {item.pname}
+            </Name>
+
+            <Price>
+                {item.pprice}
+            </Price>
+
             </Frame>
             :
             <>
@@ -24,8 +30,6 @@ function ItemList({item,pcategory}){
 }   
 
 export default function Item({pcategory}){
-
-    // json길이
 
     return(
         <Positioner>            
@@ -38,16 +42,24 @@ export default function Item({pcategory}){
 const Positioner = styled.div`
     display: inline-block;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     top: 220px;
+
     left : calc(50vw - 400px );
     width: calc(100vw - (50vw - 400px) * 2 );
-    height: 600px;
+
+    @media (min-width : 1200px){
+        left : calc(50vw - 600px );
+        width: calc(100vw - (50vw - 600px) * 2 );
+    }
+
+    height: fit-content;
     z-index:99;
     
     padding : 0px;
+    padding-bottom : 5rem;
     border: 0px;
-    
+
     background-color: #FFFFFF;
     
 `;
@@ -56,11 +68,41 @@ const Frame = styled.div`
 display: inline-block;
 /*부모 요소에 따라 크기 변경 => %*/
 width: 30%;
-height: 30%;
+height: 300px;
 
 margin-left : 2.5%;
 margin-top : 2.5%;
 
-background : aliceblue;
+@media (min-width : 1200px){
+        width: 18%;
+        
+        /*광기*/
+        margin-left : 1.666666666666667%;
+    }
+
+border-radius: 10px;
+background: #fffaf2;
+box-shadow: 1px 1px 2px #bebebe, -1px -1px 2px #ffffff;
+
 `
 
+const Img = styled.img`
+
+width: 90%;
+height: 65%;
+margin: 5%;
+
+display: block;
+
+`
+
+const Name = styled.p`
+padding-left : 5px;
+font-family : 'tway';
+`
+
+const Price = styled.p`
+padding-left : 5px;
+font-family : 'tway';
+
+`

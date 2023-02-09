@@ -12,6 +12,9 @@ import Nav from '../components/Nav/Nav';
 /* Item import */
 import Item from '../components/Item/Item';
 
+/* Footer import */
+import Footer from '../components/Footer/Footer';
+
 function Home(){
 
     const [pcategory , setPcategory] = useState('animal')
@@ -27,6 +30,7 @@ function Home(){
         <Nav pcategory={pcategory} clickPcategory={clickPcategory} />
         <Item pcategory={pcategory} />
 
+        <Footer />
     </>
     )
 }
