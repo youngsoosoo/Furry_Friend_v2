@@ -40,13 +40,16 @@ const Positioner = styled.div`
     flex-direction: column;
     position: fixed;
     top: 220px;
-    left : calc(50vw - 350px);
-    width: calc(100vw - (50vw - 350px) * 2 );
-    height: 500px;
+    left : calc(50vw - 400px );
+    width: calc(100vw - (50vw - 400px) * 2 );
+    height: 600px;
     z-index:99;
     
+    padding : 0px;
+    border: 0px;
+    
     background-color: #FFFFFF;
-    padding: 2%;
+    
 `;
 
 const Frame = styled.div`
@@ -55,7 +58,8 @@ display: inline-block;
 width: 30%;
 height: 30%;
 
-margin : 1%;
+margin-left : 2.5%;
+margin-top : 2.5%;
 
 background : aliceblue;
 `

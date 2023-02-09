@@ -1,5 +1,5 @@
-import React , {useState} from "react";
-import styled ,{css} from "styled-components";
+import React from "react";
+import styled  from "styled-components";
 
 /*nav바 밑에 요소 불러오기 */
 import NavDetail from "./NavDetail";
@@ -65,7 +65,8 @@ const Positioner = styled.div`
     width: 1200px;
     height: 0px;
     z-index:99;
-
+    padding : 0px;
+    border: 0px;
 `;
 
 

@@ -38,6 +38,8 @@ const Positioner = styled.div`
     top: 35px;
     left : calc(50vw - 600px);
     width: 1200px;
+    padding : 0px;
+    border: 0px;
     `
 
 // 흰 배경, 내용 중간 정렬
@@ -46,8 +48,6 @@ const WhiteBackground = styled.div`
     display: flex;
     justify-content: center;
     height: auto;
-
-    
 `
 
 // 해더의 내용

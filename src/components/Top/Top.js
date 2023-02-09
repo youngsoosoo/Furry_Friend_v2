@@ -43,6 +43,8 @@ const Positioner = styled.div`
     height: 0px;
     z-index:99;
 
+    padding : 0px;
+    border: 0px;
 `;
 
 // 회색 배경
