@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 /*상품 불러오기*/
 import product from '../../JSON/product.json'
 
 function ItemList({item,pcategory}){
-    
+
+    // console.log(Object.keys(product.product).length)
+
     return(
         <>
             {item.pcategory.includes(pcategory)
@@ -25,22 +27,64 @@ function ItemList({item,pcategory}){
             <>
             </>
             }
+
         </>
     )
 }   
 
-export default function Item({pcategory}){
+function AllItemList({item}){
+
+    // console.log(Object.keys(product.product).length)
 
     return(
-        <Positioner>            
+        <>
+            {item
+            ?
+            <Frame>
+            <Img src='' alt='x' />
+            <Name>
+                {item.pname}
+            </Name>
+
+            <Price>
+                {item.pprice}
+            </Price>
+
+            </Frame>
+            :
+            <>
+            </>
+            }
+
+        </>
+    )
+} 
+
+export default function Item({pcategory , ScrollActive}){
+
+
+    return(
+        
+        <Positioner className={ScrollActive ? 'flexible' : null}>            
+            {pcategory !== 'animal' ?
+            <>
             {product.product.map((item)=>
             <ItemList item={item} id={item.id} pcategory={pcategory} />)}
+            </>
+                
+            :
+            <>
+            {product.product.map((item)=>
+            <AllItemList item={item} id={item.id} />)}
+            </>
+
+            }
         </Positioner>
     )
 }
 
 const Positioner = styled.div`
-    display: inline-block;
+    display: block;
     flex-direction: column;
     position: absolute;
     top: 220px;
@@ -54,13 +98,15 @@ const Positioner = styled.div`
     }
 
     height: fit-content;
-    z-index:99;
     
     padding : 0px;
     padding-bottom : 5rem;
     border: 0px;
 
     background-color: #FFFFFF;
+
+    &.flexible{
+    }
     
 `;
 

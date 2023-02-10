@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Header(){
+export default function Header({ScrollActive}){
     return(
-        <Positioner>
+        <Positioner className={ScrollActive ? 'flexible' : null}>
         <WhiteBackground>
             <HeaderContents>
                 <Spacer/>
@@ -14,11 +14,11 @@ export default function Header(){
                 <IMG> 🔎 </IMG>
                 </Search>
 
-                <MY>
+                <MY className={ScrollActive ? 'flexible' : null}>
                     <ICON>😀</ICON>
                     <P>마이퓨리</P>
                 </MY>
-                <Cart>
+                <Cart className={ScrollActive ? 'flexible' : null}>
                     <ICON>🛒</ICON>
                     <P>장바구니</P>
                 </Cart>
@@ -34,12 +34,23 @@ export default function Header(){
 const Positioner = styled.div`
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     top: 35px;
     left : calc(50vw - 600px);
     width: 1200px;
     padding : 0px;
     border: 0px;
+
+    z-index:99;
+
+    &.flexible{
+
+    
+    position: fixed;
+    background : #e2e2e2;
+    height: 60px;
+
+    }
     `
 
 // 흰 배경, 내용 중간 정렬
@@ -108,9 +119,12 @@ const MY = styled.button`
     line-height: 0;
 
     overflow : hidden;
-    z-index:99;
 
-    background-color: #e2e2e2;
+    background: #e2e2e2;
+    &.flexible{
+    background: transparent;
+
+    }
 `
 const Cart = styled.button`
     margin: 5px;
@@ -119,7 +133,13 @@ const Cart = styled.button`
 
     line-height: 0;
 
-    background-color: #e2e2e2;
+    background: #e2e2e2;
+    
+    &.flexible{
+    background: transparent;
+
+    }
+
 `
 const ICON = styled.p`
 font-size : 2rem;

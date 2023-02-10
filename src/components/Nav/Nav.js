@@ -1,5 +1,5 @@
-import React from "react";
-import styled  from "styled-components";
+import React , {useState} from "react";
+import styled ,{css} from "styled-components";
 
 /*nav바 밑에 요소 불러오기 */
 import NavDetail from "./NavDetail";
@@ -13,6 +13,7 @@ export default function Nav({pcategory,clickPcategory}){
         borderRadius : '24px',
         boxShadow: '-10px -10px 15px rgba(255,255,255,0.5), 10px 10px 15px rgba(70,70,70,0.12)'
     }      
+    
 
     return(
         <Positioner>
@@ -59,14 +60,13 @@ export default function Nav({pcategory,clickPcategory}){
 const Positioner = styled.div`
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     top: 100px;
     left : calc(50vw - 600px);
     width: 1200px;
     height: 0px;
     z-index:99;
-    padding : 0px;
-    border: 0px;
+
 `;
 
 
@@ -102,6 +102,7 @@ const Container = styled.button`
     font-size : 1rem;   
     text-align: center;
 
+    z-index: 99;
 
 
     &:hover{

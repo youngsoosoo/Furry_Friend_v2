@@ -1,13 +1,13 @@
 import React ,{useState} from 'react'
-import styled from 'styled-components';
+import styled ,{css} from 'styled-components';
 
-export default function Top(){
+export default function Top({ScrollActive}){
     const [login,setLogin] = useState(false)
 
-    return(
-        <Positioner>
-            <GreyBackground>
 
+    return(
+        <Positioner className={ScrollActive ? 'flexible' : null}>
+            <GreyBackground>
             <TopContents>
                 <Spacer />
                 <P>홈</P>
@@ -28,32 +28,40 @@ export default function Top(){
             </TopContents>
             </GreyBackground>
         </Positioner>
-
     )
 }
 
 // 상단 고정
 const Positioner = styled.div`
+
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     top: 0px;
     left : calc(50vw - 600px);
     width: 1200px;
-    height: 0px;
     z-index:99;
 
     padding : 0px;
-    border: 0px;
+    border: 0px;    
+
+    &.flexible{
+
+        position: fixed;
+        background : #e2e2e2;
+        height: 40px;
+
+    }
 `;
+
+
 
 // 회색 배경
 const GreyBackground = styled.div`
-    width: 100%;
-    height: 50px;
 
     flex-direction: row;
     align-items: center;
+
     
 `
 
