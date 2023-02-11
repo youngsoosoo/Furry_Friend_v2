@@ -9,14 +9,14 @@ export default function Top({ScrollActive}){
         <Positioner className={ScrollActive ? 'flexible' : null}>
             <GreyBackground>
             <TopContents>
-                <Spacer />
-                <P>홈</P>
-                <Spacer />
+
 
                 {login === false ? 
                 <>
-                <P>회원가입</P>
-                <P>로그인</P>
+                <Ul>
+                <Li><P>회원가입</P></Li>
+                <Li><P>로그인</P></Li>
+                </Ul>
                 </>
                 :
                 // 로그인 했을 때
@@ -24,7 +24,6 @@ export default function Top({ScrollActive}){
                 <P></P>
                 <P>로그아웃</P>
                 </>}
-                
             </TopContents>
             </GreyBackground>
         </Positioner>
@@ -36,11 +35,13 @@ const Positioner = styled.div`
 
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 0px;
-    left : calc(50vw - 600px);
-    width: 1300px;
+
+    width: 100vw;
+    height: 40px;
+
     z-index:99;
+
+    background : #FFFFFF;
 
     padding : 0px;
     border: 0px;    
@@ -48,7 +49,7 @@ const Positioner = styled.div`
     &.flexible{
 
         position: fixed;
-        background : #e2e2e2;
+        background : #FFFFFF;
         height: 40px;
     }
 `;
@@ -65,21 +66,31 @@ const GreyBackground = styled.div`
 
 const TopContents = styled.div`
     width: 1200px;
-    height: 30px;
-    display : inline-grid;
+    height: 20px;
+    display: inline-block;
     flex-direction: row;
     align-items: right;
 
-    grid-template-columns: 220px 50px 600px 90px 100px;
+`
+
+const Ul = styled.ul`
+
+position: absolute;
+right: calc(50vw - 420px );
+list-style : none;
+
+
+`
+
+const Li = styled.li`
+    display: inline;
+    margin-left : 20px;
+    
 `
 
 //글씨
 const P = styled.span`
 margin: 5px;
 font-family : 'tway';
-
-`
-
-//여백
-const Spacer = styled.div`
+width: 200px;
 `

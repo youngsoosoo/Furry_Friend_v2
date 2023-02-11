@@ -35,19 +35,21 @@ const Positioner = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 35px;
-    left : calc(50vw - 600px);
-    width: 1300px;
+    top: 40px;
+    width: 100vw;
+    height: 60px;
     padding : 0px;
     border: 0px;
 
     z-index:99;
 
-    &.flexible{
+    background : #FFFFFF;
 
+
+    &.flexible{
     
     position: fixed;
-    background : #e2e2e2;
+    background : #FFFFFF;
     height: 60px;
 
     }
@@ -64,7 +66,7 @@ const WhiteBackground = styled.div`
 // 해더의 내용
 const HeaderContents = styled.div`
     width: 1200px;
-    height: 55px;
+    height: 60px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -97,7 +99,7 @@ width: 400px;
 height: 30px;
 
 border : 3px solid #8ec64e;
-border-radius : 24px;
+border-radius : 20px;
 outline: none;
 padding-left: 10px;
 
@@ -113,32 +115,23 @@ margin: 0;
 
 //장바구니
 const MY = styled.button`
-    margin: 5px;
+
     border : 0px;
-    
+    padding: 0px;
     line-height: 0;
 
-    overflow : hidden;
-
-    background: #e2e2e2;
-    &.flexible{
     background: transparent;
 
-    }
 `
 const Cart = styled.button`
-    margin: 5px;
-    
+    margin-left : 10px;
     border : 0px;
-
+    padding: 0px;
     line-height: 0;
 
-    background: #e2e2e2;
-    
-    &.flexible{
     background: transparent;
+    
 
-    }
 
 `
 const ICON = styled.p`

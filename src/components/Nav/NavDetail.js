@@ -49,7 +49,7 @@ const Positioner = styled.div`
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 160px;
+    top: 175px;
     left : calc(50vw - 600px);
     width: 1200px;
     height: 0px;

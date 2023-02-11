@@ -11,8 +11,8 @@ import Top from '../components/Top/Top';
 /* Nav import */
 import Nav from '../components/Nav/Nav';
 
-/* Item import */
-import Item from '../components/Item/Item';
+/* Menu import */
+import Menu from '../components/Menu/Menu';
 
 /* Footer import */
 import Footer from '../components/Footer/Footer';
@@ -27,7 +27,7 @@ export default function Home({pcategory , clickPcategory , ScrollActive , catego
         <Header ScrollActive={ScrollActive}/> 
 
         <Nav pcategory={pcategory} clickPcategory={clickPcategory} />
-        <Item pcategory={pcategory} ScrollActive={ScrollActive}  categoryNavigation={categoryNavigation} />
+        <Menu pcategory={pcategory} ScrollActive={ScrollActive}  categoryNavigation={categoryNavigation} />
         
         </Container>
         

@@ -61,7 +61,7 @@ const Positioner = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 100px;
+    top: 110px;
     left : calc(50vw - 600px);
     width: 1200px;
     height: 0px;
@@ -96,7 +96,7 @@ const Container = styled.button`
     width : 120px;
     height: 45px;
 
-    background-color: #e2e2e2;
+    background-color: #f3f3f3;
 
     border: 0px;
     font-size : 1rem;   

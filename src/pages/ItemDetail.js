@@ -8,16 +8,24 @@ import Header from '../components/Header/Header';
 /* Top import */
 import Top from '../components/Top/Top';
 
-/* Nav import */
-import Nav from '../components/Nav/Nav';
-
 export default function ItemDetail({ScrollActive}){
     return (
         <>
-            <Top ScrollActive={ScrollActive} /> 
-            <Header ScrollActive={ScrollActive}/> 
-
+            <Container>
+                <Top ScrollActive={ScrollActive} /> 
+                <Header ScrollActive={ScrollActive}/> 
+            </Container>
         </>
     )
 }
 
+const Container = styled.div`
+
+position: relative;
+
+padding: 0px;
+border: 0px;
+
+width : 100%;
+height: 200%;
+`
