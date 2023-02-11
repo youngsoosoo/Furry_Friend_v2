@@ -37,7 +37,7 @@ const Positioner = styled.div`
     position: absolute;
     top: 35px;
     left : calc(50vw - 600px);
-    width: 1200px;
+    width: 1300px;
     padding : 0px;
     border: 0px;
 

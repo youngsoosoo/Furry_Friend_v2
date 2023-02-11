@@ -14,7 +14,7 @@ function ButtonList({item,pcategory,clickPcategory}){
         {pcategory.includes(item.type)
         ?
         <>
-        <Button onClick={()=>clickPcategory(item.category)}>
+        <Button onClick={()=>{clickPcategory(item.category , item.name)}}>
             {item.name}
         </Button>
         </>
@@ -37,7 +37,7 @@ export default function NavDetail({pcategory,clickPcategory}){
                 <NavDetailContents>
                     <Spacer />
                     {pcategoryList.pcategory.map((item)=>
-                    <ButtonList item={item} id={item.id} pcategory={pcategory} clickPcategory={clickPcategory} />)}
+                    <ButtonList item={item} id={item.id} pcategory={pcategory} clickPcategory={clickPcategory}  />)}
                 </NavDetailContents>
             </WhiteBackground>
         </Positioner>
@@ -49,7 +49,7 @@ const Positioner = styled.div`
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 150px;
+    top: 160px;
     left : calc(50vw - 600px);
     width: 1200px;
     height: 0px;

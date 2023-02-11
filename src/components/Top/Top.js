@@ -1,5 +1,5 @@
 import React ,{useState} from 'react'
-import styled ,{css} from 'styled-components';
+import styled from 'styled-components';
 
 export default function Top({ScrollActive}){
     const [login,setLogin] = useState(false)
@@ -39,7 +39,7 @@ const Positioner = styled.div`
     position: absolute;
     top: 0px;
     left : calc(50vw - 600px);
-    width: 1200px;
+    width: 1300px;
     z-index:99;
 
     padding : 0px;
@@ -50,7 +50,6 @@ const Positioner = styled.div`
         position: fixed;
         background : #e2e2e2;
         height: 40px;
-
     }
 `;
 
@@ -62,7 +61,6 @@ const GreyBackground = styled.div`
     flex-direction: row;
     align-items: center;
 
-    
 `
 
 const TopContents = styled.div`

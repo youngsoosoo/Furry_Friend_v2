@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 /*상품 불러오기*/
 import product from '../../JSON/product.json'
 
 function ItemList({item,pcategory}){
-
-    // console.log(Object.keys(product.product).length)
 
     return(
         <>
@@ -32,9 +30,7 @@ function ItemList({item,pcategory}){
     )
 }   
 
-function AllItemList({item}){
-
-    // console.log(Object.keys(product.product).length)
+function AllItemList({item }){
 
     return(
         <>
@@ -60,12 +56,17 @@ function AllItemList({item}){
     )
 } 
 
-export default function Item({pcategory , ScrollActive}){
+export default function Item({pcategory , ScrollActive , categoryNavigation}){
 
-
+    console.log(categoryNavigation)
     return(
         
-        <Positioner className={ScrollActive ? 'flexible' : null}>            
+        <Positioner className={ScrollActive ? 'flexible' : null}> 
+            <CategoryNavigation>
+                {categoryNavigation[1] === 'all' ? categoryNavigation[0] : categoryNavigation.join(' > ')}
+                
+            </CategoryNavigation>
+
             {pcategory !== 'animal' ?
             <>
             {product.product.map((item)=>
@@ -109,6 +110,12 @@ const Positioner = styled.div`
     }
     
 `;
+
+const CategoryNavigation = styled.div`
+padding : 10px;
+font-weight : 1000;
+font-family : 'tway'
+`
 
 const Frame = styled.div`
 display: inline-block;

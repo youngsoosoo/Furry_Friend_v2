@@ -1,11 +1,11 @@
-import React , {useState} from "react";
-import styled ,{css} from "styled-components";
+import React  from "react";
+import styled from "styled-components";
 
 /*nav바 밑에 요소 불러오기 */
 import NavDetail from "./NavDetail";
 
 
-export default function Nav({pcategory,clickPcategory}){
+export default function Nav({pcategory,clickPcategory , categoryNavigation}){
     
     const ContainerSelected = {
         background : '#ffffff',
@@ -21,7 +21,7 @@ export default function Nav({pcategory,clickPcategory}){
                 <NavContents>
                     <Spacer />
                     <Container 
-                        onClick={()=>clickPcategory('best')}
+                        onClick={()=>clickPcategory('best','all')}
                         style={pcategory.includes('best') ? 
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         >
@@ -31,21 +31,21 @@ export default function Nav({pcategory,clickPcategory}){
                     <Container 
                         style={pcategory.includes('dog') ? 
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
-                        onClick={()=>clickPcategory('dog')}>
+                        onClick={()=>clickPcategory('dog','all')}>
                         <P>강아지</P>
                     </Container>
 
                     <Container 
                         style={pcategory.includes('cat') ? 
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
-                        onClick={()=>clickPcategory('cat')}>
+                        onClick={()=>clickPcategory('cat','all')}>
                         <P>고양이</P>
                     </Container>
                     
                     <Container 
                         style={pcategory.includes('고라니') ?
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
-                        onClick={()=>clickPcategory('고라니')}>
+                        onClick={()=>clickPcategory('고라니','all')}>
                         <P>고라니</P>
                     </Container>
                 </NavContents>
