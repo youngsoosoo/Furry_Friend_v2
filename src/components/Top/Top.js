@@ -37,7 +37,7 @@ const Positioner = styled.div`
     flex-direction: column;
 
     width: 100vw;
-    height: 40px;
+    height: 45px;
 
     z-index:99;
 
@@ -45,7 +45,8 @@ const Positioner = styled.div`
 
     padding : 0px;
     border: 0px;    
-
+    margin-top: -5px;
+    margin-left: -10px;
     &.flexible{
 
         position: fixed;

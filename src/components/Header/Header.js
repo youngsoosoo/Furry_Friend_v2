@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from 'react-router-dom'
 
 export default function Header({ScrollActive}){
     return(
@@ -7,7 +8,9 @@ export default function Header({ScrollActive}){
         <WhiteBackground>
             <HeaderContents>
                 <Spacer/>
+                <StyledLink to='/'>
                 <Title>Furry</Title>
+                </StyledLink>
                 <Search>
                 <Input 
                     placeholder="찾고 싶은 상품을 검색해보세요!"/>
@@ -38,8 +41,10 @@ const Positioner = styled.div`
     top: 40px;
     width: 100vw;
     height: 60px;
+    
     padding : 0px;
     border: 0px;
+    margin-left: -10px;
 
     z-index:99;
 
@@ -82,7 +87,16 @@ const Title = styled.div`
     margin: 30px;
 
 `
+//StyledLink
+const StyledLink = styled(Link)`
+text-decoration : none;
+&:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color : #000000;
+    }
 
+
+`
 //검색창
 
 const Search = styled.div`

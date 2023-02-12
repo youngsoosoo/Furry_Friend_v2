@@ -1,17 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-
+import {Link} from 'react-router-dom'
 /*상품 불러오기*/
 import product from '../../JSON/product.json'
+import productImg from '../../JSON/productImg.json'
 
 function ItemList({item,pcategory}){
 
     return(
         <>
+        
+
             {item.pcategory.includes(pcategory)
             ?
+            <StyledLink to={`/ItemDetail/${item.pcategory}/${item.pid}`}>
+
             <Frame>
-            <Img src='' alt='x' />
+            <Img src={productImg.Img[item.pid].src1} alt='x' />
             <Name>
                 {item.pname}
             </Name>
@@ -21,6 +26,7 @@ function ItemList({item,pcategory}){
             </Price>
 
             </Frame>
+            </StyledLink>
             :
             <>
             </>
@@ -36,17 +42,22 @@ function AllItemList({item }){
         <>
             {item
             ?
-            <Frame>
-            <Img src='' alt='x' />
-            <Name>
-                {item.pname}
-            </Name>
+            
+            <StyledLink to={`/ItemDetail/${item.pcategory}/${item.pid}`}>
+                <Frame>
+                
+                <Img src={productImg.Img[item.pid].src1} alt='x' />
+                <Name>
+                    {item.pname}
+                </Name>
 
-            <Price>
-                {item.pprice}
-            </Price>
+                <Price>
+                    {item.pprice}
+                </Price>
 
-            </Frame>
+                </Frame>
+            </StyledLink>
+            
             :
             <>
             </>
@@ -153,6 +164,16 @@ box-shadow: 1px 1px 2px #bebebe, -1px -1px 2px #ffffff;
 
 `
 
+const StyledLink = styled(Link)`
+text-decoration : none;
+&:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color : #000000;
+    }
+
+
+`
+
 const Img = styled.img`
 
 width: 90%;
@@ -173,3 +194,4 @@ padding-left : 5px;
 font-family : 'tway';
 
 `
+

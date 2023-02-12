@@ -61,15 +61,16 @@ function App() {
         return () => { window.removeEventListener("scroll", handleScroll); }; //  window 에서 스크롤을 감시를 종료
     });
 
+
 return (
     <Routes>
         <Route path="/"
         element={<Home 
         pcategory={pcategory} clickPcategory={clickPcategory} ScrollActive={ScrollActive} categoryNavigation={categoryNavigation}  />} />
 
-        <Route path="/ItemDetail"
+        <Route path="/ItemDetail/:pcategory/:pid"
         element={<ItemDetail 
-        ScrollActive={ScrollActive} />} />
+        ScrollActive={ScrollActive} categoryNavigation={categoryNavigation} />} />
     </Routes>
 );
 }
