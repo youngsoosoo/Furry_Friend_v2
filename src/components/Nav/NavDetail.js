@@ -53,7 +53,6 @@ const Positioner = styled.div`
     left : calc(50vw - 600px);
     width: 1200px;
     height: 0px;
-    z-index:99;
 
 `;
 

@@ -36,12 +36,13 @@ export default function ItemDetail({ScrollActive }){
 
 const Container = styled.div`
 
-position: relative;
 
 padding: 0px;
 border: 0px;
 margin: 0px;
 
-width : 100%;
+width : fit-content;
 height: 200%;
+
+overflow-x : hidden;
 `

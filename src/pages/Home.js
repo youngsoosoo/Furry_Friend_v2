@@ -42,6 +42,7 @@ position: relative;
 padding: 0px;
 border: 0px;
 
-width : 100%;
+width : 100vw;
 height: 200%;
+
 `
