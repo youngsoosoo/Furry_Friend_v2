@@ -14,7 +14,10 @@ import Top from '../components/Top/Top';
 /* Item import */
 import Item from '../components/Item/Item';
 
-export default function ItemDetail({ScrollActive }){
+/* ItemNavigation import */
+import ItemNavigation from '../components/Item/ItemNavigation';
+
+export default function ItemDetail({ScrollActive , ScrollActiveNavigator}){
 
     const { pid } = useParams();
 
@@ -27,6 +30,7 @@ export default function ItemDetail({ScrollActive }){
                 <Top ScrollActive={ScrollActive} /> 
                 <Header ScrollActive={ScrollActive}/>
                 <Item item={item} />
+                <ItemNavigation item={item} ScrollActiveNavigator={ScrollActiveNavigator}/>
 
             </Container>
 

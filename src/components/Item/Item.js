@@ -1,8 +1,9 @@
 import React ,{useEffect, useState} from "react";
-import styled from "styled-components";
+import styled ,{css} from "styled-components";
 
 import Back from "../Back/Back";
 import productImg from '../../JSON/productImg.json'
+import { Navigate } from "react-router-dom";
 
 
 export default function Item({item}){
@@ -37,13 +38,11 @@ export default function Item({item}){
                 <Back />
 
                 <Img src={productImg.Img[item.pid].src1} alt='x' />
-
-
-
                 <Ul>
                     
-                <Li> <Name> {item.pname} </Name> </Li>
-                <Li> <SpanFont> 가격 : {item.pprice} </SpanFont> </Li>                
+                <Li NoBorder> <Name> {item.pname} </Name> </Li>
+                <Li NoBorder> <SpanFont> ♡ 0개 </SpanFont> </Li>
+                <Li NoBorder> <SpanFont> {item.pprice} 원 </SpanFont> </Li>                
                 <Li> <SpanFont> 수량 :  </SpanFont>
                 <IncreaseButton onClick={()=>increase()}>
                     +
@@ -51,16 +50,19 @@ export default function Item({item}){
                 <SpanFont> {amount} </SpanFont>
                 <DecreaseButton onClick={()=>decrease()}>
                     -
-                </DecreaseButton> </Li>
+                </DecreaseButton> 
+                </Li>
 
-                <Li> <SpanFont> 결제 가격 : {totalPrice} </SpanFont> </Li> 
+                <Li > <SpanFont> 결제 가격 : {totalPrice} </SpanFont> </Li> 
+
+                <Li> <Button Cart> 장바구니 </Button> <Button Buy> 바로구매 </Button></Li>
                 </Ul>
 
             </Positioner>
 
-            {/* <Positioner>
-            <PFont> 설명 : {item.pexplain} </PFont>
-            </Positioner> */}
+
+
+
 
         </>
     )
@@ -84,10 +86,30 @@ border: 0px;
 
 background-color: #FFFFFF;
 
-&.flexible{
-}
+${(props) =>
+    props.Info &&
+    css`
+    top: 800px;
 
+
+`}
+
+${(props) =>
+    props.Comment &&
+    css`    
+
+
+`}
 `;
+
+const Navigation = styled.div`
+width: 100%;
+background: #e2e2e2;
+
+text-align: center;
+
+border-top: 1px solid #000000;
+`
 
 const Img = styled.img`
 width: 500px;
@@ -104,8 +126,8 @@ top : 10%;
 const Ul = styled.ul`
 display: inline-block;
 position : absolute;
-right : 15%;
-top : 10%;
+right : 5%;
+top : 5%;
 
 list-style : none;
 
@@ -113,9 +135,18 @@ list-style : none;
 
 const Li = styled.li`
 
-margin-bottom : 50px;
-padding-bottom : 15px;
-border-bottom : 1px solid #d3c9d2;
+margin-top : 25px;
+padding-top : 25px;
+border-top : 1px solid #d3c9d2;
+
+${(props) =>
+    props.NoBorder &&
+    css`
+    border: 0px;
+    margin-top : 0px;
+
+`}
+
 
 `
 
@@ -127,7 +158,7 @@ font-size : 1.5rem;
 `
 const SpanFont = styled.span`
 font-family : 'tway';
-font-size : 1.5rem;
+font-size : 1.4rem;
 
 `
 
@@ -138,6 +169,24 @@ font-size : 1.5rem;
 `
 
 const Button = styled.button`
+${(props) =>
+    props.Cart &&
+    css`
+    width: 150px;
+    padding: 10px;
+    background : #ffffff;
+    color : #000000;
+
+`}
+
+${(props) =>
+    props.Buy &&
+    css`
+    width: 150px;
+    padding: 10px;
+    background : #000000;
+    color : #ffffff;
+`}
 
 `
 

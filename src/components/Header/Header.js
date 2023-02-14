@@ -35,15 +35,18 @@ export default function Header({ScrollActive}){
 
 // 상단 고정, 그림자
 const Positioner = styled.div`
+    position: absolute;
+
     display: flex;
     flex-direction: column;
-    position: absolute;
     top: 40px;
+
     width: 100vw;
     height: 60px;
     
     padding : 0px;
     border: 0px;
+    
     margin-left: -10px;
 
     z-index:99;
@@ -56,7 +59,7 @@ const Positioner = styled.div`
     position: fixed;
     background : #FFFFFF;
     height: 60px;
-
+    margin-top: -10px;
     }
     `
 

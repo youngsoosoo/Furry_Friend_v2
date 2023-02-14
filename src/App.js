@@ -44,6 +44,7 @@ function App() {
 
     const [ScrollY, setScrollY] = useState(0); // window 의 pageYOffset값을 저장 
     const [ScrollActive, setScrollActive] = useState(false); 
+    const [ScrollActiveNavigator, setScrollActiveNavigator] = useState(false); 
 
     const handleScroll = () => { 
         if(ScrollY > 120) {
@@ -55,13 +56,27 @@ function App() {
         }
     }
 
+    const handleScrollNavigator = () => { 
+        if(ScrollY > 600) {
+            setScrollActiveNavigator(true);
+        } else {
+            setScrollActiveNavigator(false);
+        }
+    }
+
     useEffect(() => {
         function scrollListener() {  window.addEventListener("scroll", handleScroll); } //  window 에서 스크롤을 감시 시작
         scrollListener(); // window 에서 스크롤을 감시
         return () => { window.removeEventListener("scroll", handleScroll); }; //  window 에서 스크롤을 감시를 종료
     });
 
+    useEffect(() => {
+        function scrollNavigatorListener() {  window.addEventListener("scroll", handleScrollNavigator); } //  window 에서 스크롤을 감시 시작
+        scrollNavigatorListener(); // window 에서 스크롤을 감시
+        return () => { window.removeEventListener("scroll", handleScrollNavigator); }; //  window 에서 스크롤을 감시를 종료
+    });
 
+    console.log(ScrollY)
 return (
     <Routes>
         <Route path="/"
@@ -70,7 +85,7 @@ return (
 
         <Route path="/ItemDetail/:pcategory/:pid"
         element={<ItemDetail 
-        ScrollActive={ScrollActive} categoryNavigation={categoryNavigation} />} />
+        ScrollActive={ScrollActive} ScrollActiveNavigator={ScrollActiveNavigator} categoryNavigation={categoryNavigation} />} />
     </Routes>
 );
 }

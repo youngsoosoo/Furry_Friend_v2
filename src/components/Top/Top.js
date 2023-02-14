@@ -32,6 +32,7 @@ export default function Top({ScrollActive}){
 
 // 상단 고정
 const Positioner = styled.div`
+    position: absolute;
 
     display: flex;
     flex-direction: column;
@@ -45,13 +46,15 @@ const Positioner = styled.div`
 
     padding : 0px;
     border: 0px;    
-    margin-top: -5px;
-    margin-left: -10px;
+    margin-top: -10px;
+    margin-left: -5px;
     &.flexible{
 
         position: fixed;
         background : #FFFFFF;
         height: 40px;
+        margin-top: -15px;
+
     }
 `;
 
