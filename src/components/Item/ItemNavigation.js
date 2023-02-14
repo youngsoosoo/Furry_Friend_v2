@@ -2,6 +2,7 @@ import React from "react";
 import styled ,{css} from "styled-components";
 
 export default function ItemNavigation({ScrollActiveNavigator}){
+
     return(
         <Positioner>
             <Navigator className={ScrollActiveNavigator ? 'flexible' : null}>
@@ -16,7 +17,7 @@ const Positioner = styled.div`
 display: block;
 flex-direction: column;
 position: absolute;
-top: 750px;
+top: 650px;
 
 left : calc(50vw - 500px );
 width: calc(100vw - (50vw - 500px) * 2 );
@@ -30,18 +31,6 @@ border: 0px;
 
 background-color: #FFFFFF;
 
-${(props) =>
-    props.Info &&
-    css`
-    top: 800px;
-`}
-
-${(props) =>
-    props.Comment &&
-    css`    
-
-
-`}
 `
 
 const Navigator = styled.div`
@@ -57,7 +46,7 @@ width: calc(100vw - (50vw - 500px) * 2 );
 
 position: sticky;
 top:90px;
-
+z-index: 99;
 border-top: 0px;
 
 

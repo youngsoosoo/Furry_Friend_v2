@@ -76,7 +76,6 @@ function App() {
         return () => { window.removeEventListener("scroll", handleScrollNavigator); }; //  window 에서 스크롤을 감시를 종료
     });
 
-    console.log(ScrollY)
 return (
     <Routes>
         <Route path="/"

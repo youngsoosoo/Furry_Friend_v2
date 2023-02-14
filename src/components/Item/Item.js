@@ -77,7 +77,7 @@ top: 150px;
 left : calc(50vw - 500px );
 width: calc(100vw - (50vw - 500px) * 2 );
 
-height: 600px;
+height: 500px;
 
 padding : 0px;
 padding-bottom : 3rem;
@@ -102,18 +102,9 @@ ${(props) =>
 `}
 `;
 
-const Navigation = styled.div`
-width: 100%;
-background: #e2e2e2;
-
-text-align: center;
-
-border-top: 1px solid #000000;
-`
-
 const Img = styled.img`
-width: 500px;
-height: 512px;
+width: 40%;
+height: 60%;
 
 
 margin-left : 5vw;
@@ -135,8 +126,8 @@ list-style : none;
 
 const Li = styled.li`
 
-margin-top : 25px;
-padding-top : 25px;
+margin-top : 5%;
+padding-top : 10%;
 border-top : 1px solid #d3c9d2;
 
 ${(props) =>

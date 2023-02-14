@@ -17,13 +17,19 @@ import Item from '../components/Item/Item';
 /* ItemNavigation import */
 import ItemNavigation from '../components/Item/ItemNavigation';
 
+/* ItemNInfo import */
+import ItemInfo from '../components/Item/ItemInfo';
+
+/* ItemComment import */
+import ItemComment from '../components/Item/ItemComment';
+
 export default function ItemDetail({ScrollActive , ScrollActiveNavigator}){
 
     const { pid } = useParams();
 
     //Item 컴포넌트에 넘겨줄 props 데이터.
     let item = product.product[pid]
-    
+    console.log(window.Screen.height)
     return (
         <>
             <Container>
@@ -31,7 +37,10 @@ export default function ItemDetail({ScrollActive , ScrollActiveNavigator}){
                 <Header ScrollActive={ScrollActive}/>
                 <Item item={item} />
                 <ItemNavigation item={item} ScrollActiveNavigator={ScrollActiveNavigator}/>
-
+                <Wrapper>
+                    <ItemInfo item={item} />
+                    <ItemComment item={item} />
+                </Wrapper>
             </Container>
 
         </>
@@ -49,4 +58,19 @@ width : fit-content;
 height: 200%;
 
 overflow-x : hidden;
+`
+const Wrapper = styled.div`
+padding: 0px;
+border: 0px;
+margin: 0px;
+
+width : fit-content;
+height: fit-content;
+
+position: absolute;
+top:700px;
+left : calc(50vw - 500px );
+
+display: block;
+
 `
