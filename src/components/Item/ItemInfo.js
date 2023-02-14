@@ -4,8 +4,10 @@ import styled from "styled-components";
 
 export default function ItemInfo({item}){
     return(
-        <Positioner>
-            <p>{item.pexplain}</p>
+        <Positioner >
+            <Title id='1'>상품 설명</Title>
+            
+            <Info>{item.pexplain}</Info>
 
 
 
@@ -26,5 +28,20 @@ padding : 0px;
 border: 0px;
 
 background-color: #FFFFFF;
+
+`
+const Title = styled.p`
+font-family : 'tway';
+font-size : 2rem;
+
+text-align : center;
+
+`
+
+const Info = styled.p`
+font-family : 'tway';
+font-size : 1.2rem;
+
+text-align : center;
 
 `

@@ -29,7 +29,7 @@ export default function ItemDetail({ScrollActive , ScrollActiveNavigator}){
 
     //Item 컴포넌트에 넘겨줄 props 데이터.
     let item = product.product[pid]
-    console.log(window.Screen.height)
+
     return (
         <>
             <Container>
@@ -38,8 +38,8 @@ export default function ItemDetail({ScrollActive , ScrollActiveNavigator}){
                 <Item item={item} />
                 <ItemNavigation item={item} ScrollActiveNavigator={ScrollActiveNavigator}/>
                 <Wrapper>
-                    <ItemInfo item={item} />
-                    <ItemComment item={item} />
+                    <ItemInfo  item={item} />
+                    <ItemComment id='2' item={item} />
                 </Wrapper>
             </Container>
 

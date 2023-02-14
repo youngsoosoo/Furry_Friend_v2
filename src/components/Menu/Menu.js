@@ -6,7 +6,6 @@ import product from '../../JSON/product.json'
 import productImg from '../../JSON/productImg.json'
 
 function ItemList({item,pcategory}){
-
     return(
         <>
         
@@ -89,8 +88,8 @@ export default function Menu({pcategory , ScrollActive , categoryNavigation}){
                 
             :
             <>
-            {product.product.map((item)=>
-            <AllItemList item={item} id={item.id} />)}
+            {product.product.map((item , index)=>
+            <AllItemList item={item} key={index} />)}
             </>
             }
 
@@ -99,7 +98,7 @@ export default function Menu({pcategory , ScrollActive , categoryNavigation}){
             {bestSorting().map((item) => 
             <AllItemList item={item} id={item.id} pcategory={pcategory} />)}
             </>
-                
+            
             :
             <>
             

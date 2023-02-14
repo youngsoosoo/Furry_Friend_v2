@@ -3,8 +3,6 @@ import styled ,{css} from "styled-components";
 
 import Back from "../Back/Back";
 import productImg from '../../JSON/productImg.json'
-import { Navigate } from "react-router-dom";
-
 
 export default function Item({item}){
 
@@ -150,12 +148,6 @@ font-size : 1.5rem;
 const SpanFont = styled.span`
 font-family : 'tway';
 font-size : 1.4rem;
-
-`
-
-const PFont = styled.p`
-font-family : 'tway';
-font-size : 1.5rem;
 
 `
 

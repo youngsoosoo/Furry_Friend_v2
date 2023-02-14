@@ -1,15 +1,18 @@
 import React from "react";
 import styled ,{css} from "styled-components";
 
+import {Link} from 'react-scroll'
+
 export default function ItemNavigation({ScrollActiveNavigator}){
 
     return(
-        <Positioner>
+        <Positioner >
             <Navigator className={ScrollActiveNavigator ? 'flexible' : null}>
-                <Button Info> 상품 설명 </Button> <Button Comment> 상품 후기 </Button>
+                <Link to='1' spy={true} smooth={true}> <Button Info > 상품 설명 </Button> </Link>
+                <Link to='2' spy={true} smooth={true}> <Button Comment> 상품 후기 </Button> </Link>
             </Navigator>
 
-        </Positioner>
+        </Positioner >
     )
 }
 
@@ -77,4 +80,14 @@ ${(props) =>
     background : #ffffff;
     color : #000000;
 `}
+`
+
+const StyledLink = styled(Link)`
+text-decoration : none;
+&:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color : #000000;
+    }
+
+
 `
