@@ -8,7 +8,6 @@ import comment from "../../JSON/productcomment"
 function CommentList ({item}){
     const { pid } = useParams();
 
-
     return(
         <>
         {item.pid === pid ?

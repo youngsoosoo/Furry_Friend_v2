@@ -21,7 +21,7 @@ export default function Nav({pcategory,clickPcategory , categoryNavigation}){
                 <NavContents>
                     <Spacer />
                     <Container 
-                        onClick={()=>clickPcategory('best','all')}
+                        onClick={()=>clickPcategory('-','all')}
                         style={pcategory.includes('best') ? 
                         {background : ContainerSelected.background , borderRadius : ContainerSelected.borderRadius , boxShadow : ContainerSelected.boxShadow , border : ContainerSelected.border} : {}} 
                         >

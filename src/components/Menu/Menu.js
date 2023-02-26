@@ -1,4 +1,4 @@
-import React ,{useEffect, useState} from "react";
+import React ,{useCallback, useEffect, useState} from "react";
 import styled from "styled-components";
 import {Link} from 'react-router-dom'
 /*상품 불러오기*/
@@ -7,13 +7,12 @@ import productImg from '../../JSON/productImg.json'
 /* ItemPagination */
 import Pagination from './Paging';
 
-function ItemList({item,key,array,setArray}){
+function ItemList({item}){
 
-    setArray(array)
-    
+
     return(
         <>
-            {item
+            {item 
             ?
             <>
             <StyledLink to={`/ItemDetail/${item.pcategory}/${item.pid}`}>
@@ -41,72 +40,47 @@ function ItemList({item,key,array,setArray}){
     )
 }   
 
-function AllItemList({item }){
-
-    return(
-        <>
-            {item
-            ?
-            
-            <StyledLink to={`/ItemDetail/${item.pcategory}/${item.pid}`}>
-                <Frame>
-                
-                <Img src={productImg.Img[item.pid].src1} alt='x' />
-                <Name>
-                    {item.pname}
-                </Name>
-
-                <Price>
-                    {item.pprice}
-                </Price>
-
-                </Frame>
-            </StyledLink>
-            
-            :
-            <>
-            </>
-            }
-
-        </>
-    )
-} 
-
 export default function Menu({pcategory , ScrollActive , categoryNavigation}){
 
+    /*페이징 */
+    const [arr,setArr] = useState([]);  // 리스트에 나타낼 아이템들
+
+    useEffect(()=>{
+        setArr(product.product.filter(item => item.pcategory.includes(pcategory) ))
+    },[pcategory])
+
+    const [count, setCount] = useState(0); // 아이템 총 개수
+    const [currentPage, setCurrentPage] = useState(1); // 현재 페이지. default 값으로 1
+    const [postPerPage] = useState(10); // 한 페이지에 보여질 아이템 수 
+    const [indexOfLastPost, setIndexOfLastPost] = useState(0); // 현재 페이지의 마지막 아이템 인덱스
+    const [indexOfFirstPost, setIndexOfFirstPost] = useState(0); // 현재 페이지의 첫번째 아이템 인덱스
+    const [currentPosts, setCurrentPosts] = useState([]); // 현재 페이지에서 보여지는 아이템들
+    const [list,setList] = useState([])
+    console.log(count,currentPage)
+    // items호출
+
+    //객체 -> 배열
+    useEffect(()=>{
+    setList(Object.values(arr))
+    },[arr])
+
+    useEffect(() => {
+    setCount(Object.keys(arr).length);
+    setIndexOfLastPost(currentPage * postPerPage);
+    setIndexOfFirstPost(indexOfLastPost - postPerPage);
+    setCurrentPosts(list.slice(indexOfFirstPost,indexOfLastPost));
+    }, [currentPage, indexOfFirstPost, indexOfLastPost, arr, list, postPerPage]);
+
+    const setPage = (e) => {
+        setCurrentPage(e);
+    };
+
+    /*조회수 순으로정렬*/
     const bestSorting = () => (
-        product.product.sort((a,b) => {
+        currentPosts.sort((a,b) => {
         return b.pview - a.pview
     }))
 
-    const [array,setArray] = useState()
-    useEffect(()=>{
-        console.log(array)
-    },[array])
-    
-    // const [items, setItems] = React.useState([]) //리스트에 나타낼 아이템
-    // const [count, setCount] = React.useState(0); //아이템 총 개수
-    // const [currentpage, setCurrentpage] = React.useState(1); //현재페이지
-    // const [postPerPage] = React.useState(1); //페이지당 아이템 개수
-
-    // const [indexOfLastPost, setIndexOfLastPost] = React.useState(0);
-    // const [indexOfFirstPost, setIndexOfFirstPost] = React.useState(0);
-    // const [currentPosts, setCurrentPosts] = React.useState(0);
-
-    // //items호출
-
-    // React.useEffect(() => {
-    // setCount(array.length);
-    // setIndexOfLastPost(currentpage * postPerPage);
-    // setIndexOfFirstPost(indexOfLastPost - postPerPage);
-    // setCurrentPosts(array.slice(indexOfFirstPost, indexOfLastPost));
-    // }, [currentpage, indexOfFirstPost, indexOfLastPost, items, postPerPage]);
-
-
-    // const setPage = (e) => {
-    //     setCurrentpage(e);
-    //   };
-      
     return(
         
         <Positioner className={ScrollActive ? 'flexible' : null}> 
@@ -114,38 +88,21 @@ export default function Menu({pcategory , ScrollActive , categoryNavigation}){
                 {categoryNavigation[1] === 'all' ? categoryNavigation[0] : categoryNavigation.join(' > ')}
             </CategoryNavigation>
 
-            {pcategory !== 'animal' ?
-            <>
-            {product.product
-            .filter(item => item.pcategory.includes(pcategory) )
-            .map((item , index ,array)=>
-            <ItemList item={item} key={index} array={array} setArray={setArray} />)}
-            </>
-            :
-            <>
-            {product.product
-            .map((item , index)=>
-            <AllItemList item={item} key={index} />)}
-            </>
-            }
-            
-            
-            {/* 베스트 상품 */}
-
-
-            {pcategory === 'best' ?
+            {pcategory === '-' ?
             <>
             {bestSorting().map((item) => 
-            <AllItemList item={item} id={item.id} pcategory={pcategory} />)}
-            </>
+            <ItemList item={item} id={item.id} pcategory={pcategory} />)}
             
+            </>
             :
             <>
-            
+            {currentPosts
+            .filter(item => item.pcategory.includes(pcategory) )
+            .map((item , index )=>
+            <ItemList item={item} key={index} />)}
             </>
             }
-
-            {/* <Pagination page={currentpage} count={count} setPage={setPage} />    */}
+            <Pagination page={currentPage} count={count} setPage={setPage} />   
 
         </Positioner>
     )

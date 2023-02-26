@@ -65,9 +65,61 @@
         {
             "pid" : 5,
             "pcategory" : "dog-tool",
-            "pexplain" : "강아지 집입니다.",
-            "pname" : "개집",
-            "pprice" : "1900000",
+            "pexplain" : "강아지 쿠션입니다.",
+            "pname" : "강아지 쿠션",
+            "pprice" : "5800",
+            "pview" : "2",
+            "pdiscount" : false,
+            "del" : false,
+            "reg" : false,
+            "mod" : false 
+        },
+        
+        {
+            "pid" : 6,
+            "pcategory" : "dog-tool",
+            "pexplain" : "강아지 물통입니다.",
+            "pname" : "강아지 물통",
+            "pprice" : "19000",
+            "pview" : "2",
+            "pdiscount" : false,
+            "del" : false,
+            "reg" : false,
+            "mod" : false 
+        },
+        
+        {
+            "pid" : 7,
+            "pcategory" : "dog-tool",
+            "pexplain" : "강아지 물통2입니다.",
+            "pname" : "강아지 물통2",
+            "pprice" : "22000",
+            "pview" : "2",
+            "pdiscount" : false,
+            "del" : false,
+            "reg" : false,
+            "mod" : false 
+        },
+        
+        {
+            "pid" : 8,
+            "pcategory" : "dog-tool",
+            "pexplain" : "강아지 온도계입니다.",
+            "pname" : "강아지 온도계",
+            "pprice" : "56000",
+            "pview" : "2",
+            "pdiscount" : false,
+            "del" : false,
+            "reg" : false,
+            "mod" : false 
+        },
+        
+        {
+            "pid" : 9,
+            "pcategory" : "dog-tool",
+            "pexplain" : "강아지 목줄입니다.",
+            "pname" : "강아지 목줄입니다",
+            "pprice" : "56000",
             "pview" : "2",
             "pdiscount" : false,
             "del" : false,
