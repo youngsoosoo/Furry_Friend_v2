@@ -4,13 +4,9 @@ import styled from "styled-components";
 
 export default function ItemInfo({item}){
     return(
-        <Positioner >
-            <Title id='1'>상품 설명</Title>
-            
+        <Positioner id='1'>
+            <Title >상품 설명</Title>      
             <Info>{item.pexplain}</Info>
-
-
-
         </Positioner>
     )
 }

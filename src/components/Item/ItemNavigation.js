@@ -51,9 +51,6 @@ position: sticky;
 top:90px;
 z-index: 99;
 border-top: 0px;
-
-
-
 }
 
 `
@@ -61,6 +58,8 @@ border-top: 0px;
 const Button = styled.button`
 
 border: 0px 1px 1px 1px solid #000000;
+font-family : 'tway';
+font-size : 1.2rem;
 
 ${(props) =>
     props.Info &&

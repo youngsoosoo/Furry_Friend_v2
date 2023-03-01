@@ -27,7 +27,6 @@ export default function ItemDetail({ScrollActive , ScrollActiveNavigator}){
 
     const { pid } = useParams();
 
-
     //Item 컴포넌트에 넘겨줄 props 데이터.
     let item = product.product[pid]
 

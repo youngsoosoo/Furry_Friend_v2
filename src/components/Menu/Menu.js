@@ -1,14 +1,25 @@
-import React ,{useCallback, useEffect, useState} from "react";
+import React ,{ useEffect, useState} from "react";
 import styled from "styled-components";
 import {Link} from 'react-router-dom'
 /*상품 불러오기*/
 import product from '../../JSON/product.json'
 import productImg from '../../JSON/productImg.json'
+import comment from '../../JSON/productcomment.json'
 /* ItemPagination */
 import Pagination from './Paging';
 
+
+
 function ItemList({item}){
 
+    useEffect(()=>{
+
+
+    if(item.pid === comment.Comment.map((item)=>item.pid)){
+        console.log('a')
+    }
+
+    },[])
 
     return(
         <>
@@ -56,7 +67,6 @@ export default function Menu({pcategory , ScrollActive , categoryNavigation}){
     const [indexOfFirstPost, setIndexOfFirstPost] = useState(0); // 현재 페이지의 첫번째 아이템 인덱스
     const [currentPosts, setCurrentPosts] = useState([]); // 현재 페이지에서 보여지는 아이템들
     const [list,setList] = useState([])
-    console.log(count,currentPage)
     // items호출
 
     //객체 -> 배열
@@ -65,7 +75,7 @@ export default function Menu({pcategory , ScrollActive , categoryNavigation}){
     },[arr])
 
     useEffect(() => {
-    setCount(Object.keys(arr).length);
+    setCount(list.length);
     setIndexOfLastPost(currentPage * postPerPage);
     setIndexOfFirstPost(indexOfLastPost - postPerPage);
     setCurrentPosts(list.slice(indexOfFirstPost,indexOfLastPost));
@@ -80,7 +90,7 @@ export default function Menu({pcategory , ScrollActive , categoryNavigation}){
         currentPosts.sort((a,b) => {
         return b.pview - a.pview
     }))
-
+    
     return(
         
         <Positioner className={ScrollActive ? 'flexible' : null}> 
@@ -90,14 +100,14 @@ export default function Menu({pcategory , ScrollActive , categoryNavigation}){
 
             {pcategory === '-' ?
             <>
-            {bestSorting().map((item) => 
-            <ItemList item={item} id={item.id} pcategory={pcategory} />)}
+            {bestSorting().map((item,index) => 
+            <ItemList item={item} key={index} pcategory={pcategory} />)}
             
             </>
             :
             <>
             {currentPosts
-            .filter(item => item.pcategory.includes(pcategory) )
+            .filter(item => item.pcategory.includes(pcategory))
             .map((item , index )=>
             <ItemList item={item} key={index} />)}
             </>

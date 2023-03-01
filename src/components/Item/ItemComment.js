@@ -1,4 +1,4 @@
-import React  from "react";
+import React, { useEffect, useState }  from "react";
 
 import styled ,{css} from "styled-components";
 import { useParams } from 'react-router-dom';
@@ -6,21 +6,18 @@ import { useParams } from 'react-router-dom';
 import comment from "../../JSON/productcomment"
 
 function CommentList ({item}){
-    const { pid } = useParams();
-
     return(
         <>
-        {item.pid === pid ?
+        {item ?
         <>
-        <CommentBox id='2'>
+        <CommentBox >
         <SpanFont Mid> {item.mid} </SpanFont>
-        <SpanFont Rgrade> {item.rgrade} </SpanFont>
         <Button> ❤ </Button> 0 <Button> 🤍 </Button>
         <br />
         <PFont Rtext> {item.rtext} </PFont>
-        
+        <SpanFont Rgrade> {item.rgrade} / 5 </SpanFont>
+
         </CommentBox>
-        
         </>
         :
         <>
@@ -36,8 +33,6 @@ padding : 3%;
 border : 0px solid #000000;
 border-radius : 20px;
 background: #f3f3f3;
-
-
 `
 
 const SpanFont = styled.span`
@@ -47,17 +42,12 @@ ${(props) =>
     props.Mid &&
     css`
     font-size : 1.5rem;
-
-
 `}
 ${(props) =>
     props.Rgrade &&
     css`
     font-size : 1.2rem;
-
-
 `}
-
 `
 
 const PFont = styled.p`
@@ -72,11 +62,32 @@ background: transparent;
 `
 
 export default function ItemComment ({item}){
+    
+    const { pid } = useParams();
+
+    const [arr,setArr] = useState([])
+
+    const [Rating,setRating] = useState(0)
+
+    useEffect(()=>{
+        setArr(comment.Comment.filter(item => pid === item.pid ))
+    },[pid,item.pid])
+    
+    const reducer = (acc,curr) => acc + curr
+
+    useEffect(()=>{
+    let grade = (arr.map((item) => Number(item.rgrade)))
+
+    if(grade.length >= 1){
+        setRating(grade.reduce(reducer) / arr.length)
+    }
+    },[arr])
 
     return(
-        <Positioner>
-            <Title> 상품 후기 </Title>
-            {comment.Comment.map((i, index) =>
+        <Positioner id='2'>
+            <Title> 상품 후기  </Title>
+            <State> {Rating} / 5 ({arr.length}) </State>
+            {arr.map((i, index) =>
             <CommentList item={i} key={index} /> )}
         </Positioner>
     )
@@ -102,6 +113,11 @@ font-family : 'tway';
 font-size : 2rem;
 
 text-align : center;
-
 `
 
+const State = styled.p`
+font-family : 'tway';
+font-size : 1rem;
+
+text-align : center;
+`

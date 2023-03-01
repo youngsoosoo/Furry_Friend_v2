@@ -58,10 +58,6 @@ export default function Item({item}){
 
             </Positioner>
 
-
-
-
-
         </>
     )
 }
@@ -152,6 +148,8 @@ font-size : 1.4rem;
 `
 
 const Button = styled.button`
+font-family : 'tway';
+font-size : 1.2rem;
 ${(props) =>
     props.Cart &&
     css`
@@ -175,20 +173,30 @@ ${(props) =>
 
 const IncreaseButton = styled(Button)`
     color: #090909;
-    padding: 0.7em 1.7em;
-    font-size: 18px;
+    
+    font-size: 20px;
+
+    
     border-radius: 0.5em;
     background: #e8e8e8;
     border: 1px solid #e8e8e8;
-    transition: all .3s;
-    box-shadow: 6px 6px 12px #c5c5c5,
-    -6px -6px 12px #ffffff;
-    color: #666;
-    &.active{
-       box-shadow: inset 4px 4px 12px #c5c5c5,
-        inset -4px -4px 12px #ffffff;
-}
+
+    box-shadow: 3px 3px 6px #e2e2e2,
+    -3px -3px 6px #ffffff;
+
 `
 
 const DecreaseButton = styled(Button)`
+    color: #090909;
+    
+    font-size: 21px;
+    width: 25px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    
+    box-shadow: 3px 3px 6px #e2e2e2,
+    -3px -3px 6px #ffffff;
+    
+
 `

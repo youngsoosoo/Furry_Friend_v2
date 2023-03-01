@@ -32,7 +32,7 @@ export default function Top({ScrollActive}){
 
 // 상단 고정
 const Positioner = styled.div`
-    position: absolute;
+    position: sticky;
 
     display: flex;
     flex-direction: column;

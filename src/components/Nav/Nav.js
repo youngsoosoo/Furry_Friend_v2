@@ -60,7 +60,7 @@ export default function Nav({pcategory,clickPcategory , categoryNavigation}){
 const Positioner = styled.div`
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 110px;
     left : calc(50vw - 600px);
     width: 1200px;
