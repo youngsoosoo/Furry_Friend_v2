@@ -3,6 +3,7 @@ org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
 => 참조해서 만들어야 할 테이블을 미리 만들어둬서 생긴 오류였다.
 failed to lazily initialize a collection of role: com.friend.furry.model.Member.roleSet, could not initialize proxy - no Session
 => @Transactional를 테스트 코드에 추가한다
+
 23.01.28
 NullPointerException
 =>CustomOAuth2USerService에 카카오 로그인에서 사용한 메서드인 getKakaoEmailAndName(paramMap)를 case 'kakao'가 아닌 
@@ -20,4 +21,9 @@ Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregate
 => SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 	위의 오류와 같은 문제의 오류였는데 group by에 하나의 테이블만 올리기 위해서는 위의 구문을 mysql에서 실행해주면 된다.
 	5.7부터 바뀌어서 그렇다고 한다.
+=> docker에 /etc/my.cnf 파일을 수정하는데 mysql 8버전을 사용하는 중이고 vi나 apt-get 같은 명령어가 되지 않기 때문에 docker에서 local로 파일을 복사해주고 파일을 수정해준 뒤 다시 붙여넣기를 해줬다.
+[mysqld]
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+=> 이 두 줄을 붙여넣어주면 되고 도커를 복사하는 방법은 밑에처럼 하면 된다.
+=> docker cp <복사할 파일 경로> <컨테이너 이름>:<컨테이너 내부 파일 경로>
 

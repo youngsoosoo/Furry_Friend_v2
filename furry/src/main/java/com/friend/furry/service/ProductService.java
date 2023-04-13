@@ -1,5 +1,6 @@
 package com.friend.furry.service;
 
+import com.friend.furry.model.Member;
 import com.friend.furry.model.Product;
 import com.friend.furry.model.ProductImage;
 import com.friend.furry.security.dto.PageRequestDTO;
@@ -24,17 +25,16 @@ public interface ProductService {
     //DTO를 Entity로 변환
     //하나의 Entity가 아니라 Movie와 MovieImage로 변환이 되어야 해서
     //Map으로 리턴
-    default Map<String, Object> dtoToEntity(ProductDTO productDTO){
+    default Map<String, Object> dtoToEntity(ProductDTO productDTO, Member member){
         Map<String, Object> entityMap = new HashMap<>();
 
         Product product = Product.builder()
-                .pid(productDTO.getPid())
                 .pcategory(productDTO.getPcategory())
                 .pexplain(productDTO.getPexplain())
                 .pname(productDTO.getPname())
                 .pprice(productDTO.getPprice())
-                .pview(productDTO.getPview())
                 .pdiscount(productDTO.getPdiscount())
+                .member(member)
                 .del(productDTO.isDel())
                 .build();
         entityMap.put("product", product);
@@ -67,7 +67,6 @@ public interface ProductService {
                 .pexplain(product.getPexplain())
                 .pname(product.getPname())
                 .pprice(product.getPprice())
-                .pview(product.getPview())
                 .pdiscount(product.getPdiscount())
                 .del(product.isDel())
                 .regDate(product.getRegDate())

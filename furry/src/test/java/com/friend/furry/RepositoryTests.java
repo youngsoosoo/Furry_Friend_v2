@@ -5,8 +5,6 @@ import com.friend.furry.repository.MemberRepository;
 import com.friend.furry.repository.ProductImageRepository;
 import com.friend.furry.repository.ProductRepository;
 import com.friend.furry.repository.ReviewRepository;
-import com.friend.furry.security.dto.ProductDTO;
-import com.friend.furry.security.dto.ProductImageDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -31,5 +31,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
         @Transactional
         @Query("update Member m set m.mpw = :mpw where m.email = :email")
         void updatePassword(@Param("mpw") String password, @Param("email") String email);
+
+        // @Query("select m from Member m where m.mid = :mid")
+        Member findByMid(Long mid);
 }
 

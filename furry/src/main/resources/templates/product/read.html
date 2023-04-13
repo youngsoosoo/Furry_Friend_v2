@@ -17,11 +17,11 @@
     </div>
     <div class="form-group">
       <label>리뷰 개수</label>
-      <input type="text" class="form-control" name="title" th:value="@{dto.reviewCnt}" readonly="readonly"/>
+      <input type="text" class="form-control" name="title" th:value="${dto.reviewCnt}" readonly="readonly"/>
     </div>
     <div class="form-group">
       <label>평점</label>
-      <input type="text" class="form-control" name="title" th:value="@{dto.avg}" readonly="readonly"/>
+      <input type="text" class="form-control" name="title" th:value="${dto.avg}" readonly="readonly"/>
     </div>
     <div class="uploadResult">
       <ul>
@@ -48,16 +48,12 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>작성자</label>
-              <input type="text" class="form-control" name="mid">
-            </div>
-            <div class="form-group">
               <label>평점</label>
               <div class="starrr"></div>
             </div>
             <div class="form-group">
               <label>리뷰</label>
-              <input type="text" class="form-control" name="text" placeholder="영화에 대한 감상">
+              <input type="text" class="form-control" name="text" placeholder="상품평">
             </div>
           </div>
           <div class="modal-footer">
@@ -194,3 +190,4 @@
     </script>
   </th:block>
 </th:block>
+</html>

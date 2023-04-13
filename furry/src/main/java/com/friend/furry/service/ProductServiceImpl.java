@@ -2,6 +2,7 @@ package com.friend.furry.service;
 
 import com.friend.furry.model.Product;
 import com.friend.furry.model.ProductImage;
+import com.friend.furry.repository.MemberRepository;
 import com.friend.furry.repository.ProductImageRepository;
 import com.friend.furry.repository.ProductRepository;
 import com.friend.furry.security.dto.PageRequestDTO;
@@ -29,18 +30,18 @@ public class ProductServiceImpl implements ProductService{
 
     private final ProductImageRepository productImageRepository;
 
+    private final MemberRepository memberRepository;
+
     @Override
     public Long register(ProductDTO productDTO) {
         log.warn("productDTO:" + productDTO);
 
-        Map<String, Object> entityMap = dtoToEntity(productDTO);
+        Map<String, Object> entityMap = dtoToEntity(productDTO, memberRepository.findByMid(productDTO.getMid()));
         //상품과 상품 이미지 정보 찾아오기
         Product product = (Product) entityMap.get("product");
-        List<ProductImage> movieImageList = (List<ProductImage>) entityMap.get("imgList");
+        List<ProductImage> productImageList = (List<ProductImage>) entityMap.get("imgList");
         productRepository.save(product);
-        movieImageList.forEach(productImage -> {
-            productImageRepository.save(productImage);
-        });
+        productImageRepository.saveAll(productImageList);
         return product.getPid();
     }
 

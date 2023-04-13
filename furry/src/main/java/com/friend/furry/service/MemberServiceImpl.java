@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
-    private Long sequence = 101L;
     @Override
     //회원가입
     public void join(MemberJoinDTO memberJoinDTO) throws MidExistException {
@@ -42,8 +41,6 @@ public class MemberServiceImpl implements MemberService {
         member.changePassword(passwordEncoder.encode(memberJoinDTO.getMpw()));
         //권한 설정
         member.addRole(MemberRole.USER);
-        log.info(member);
-        log.info(member.getRoleSet());
 
         memberRepository.save(member);
     }

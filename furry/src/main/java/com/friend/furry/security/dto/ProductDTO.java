@@ -18,7 +18,6 @@ public class ProductDTO {
     private String pcategory;//카테고리
     private String pname;   //상품명
     private String pexplain;//상품설명
-    private Long pview;     //조회수
     private Long pprice;    //원가
     private Long pdiscount; //할인율
     private boolean del;    //판매여부
@@ -27,6 +26,7 @@ public class ProductDTO {
     private double avg;
     //리뷰 개수
     private Long reviewCnt;
+    private Long mid;
     //등록일과 수정
     private LocalDateTime regDate;
     private LocalDateTime modDate;
