@@ -1,49 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
-    <th:block th:fragment="content">
-        <h1 class="mt-4">상품 목록</h1>
-        <span>
-      <a th:href="@{/product/register}">
-        <button type="button" class="btn btn-primary">상품 등록</button>
-      </a>
-    </span>
-        <br/>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>상품번호</th>
-                <th>상품이름</th>
-                <th>평점</th>
-                <th>등록</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="dto:${result.dtoList}">
-                <td>
-                    [[${dto.pid}]]
-                </td>
-                <td>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>카테고리</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+<header th:replace="fragments/header.html::headerFragment"></header>
+<a th:href="@{/product/register}">
+    <button type="button" class="btn btn-primary">상품 등록</button>
+</a>
+<div class="container text-center" >
+    <div class="row">
+        <div class="col" th:each="dto:${result.dtoList}">
+            <div class="card" style="width: 18rem;">
+                <a th:href="@{/product/read(pid=${dto.pid}, page=${result.page})}">
                     <img th:if="${dto.imageDTOList.size()>0 && dto.imageDTOList[0].path != null}"
-                         th:src="|/display?filename=${dto.imageDTOList[0].thumbnailURL}|" width="200px" height="200px">
-                    <a th:href="@{/product/read(pid=${dto.pid}, page=${result.page})}">[[${dto.pname}]]</a>
-                </td>
-                <td>[[${dto.avg}]]</td>
-                <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
-            </tr>
-            </tbody>
-        </table>
-        <ul class="pagination h-100 justify-content-center align-items-center">
-            <li class="page-item" th:if="${result.prev}">
-                <a class="page-link" th:href="@{/product/list(page=${result.start-1})}" tabindex="-1">이전</a>
-            </li>
-            <li th:class=" 'page-item' + ${result.page == page?'active':''}" th:each="page:${result.pageList}">
-                <a class="page-link" th:href="@{/product/list(page=${page})}">[[${page}]]</a>
-            </li>
-            <li class="page-item" th:if="${result.next}">
-                <a class="page-link" th:href="@{/product/list(page=${result.end+1})}" tabindex="-1">다음</a>
-            </li>
-        </ul>
-    </th:block>
-</th:block>
+                         th:src="|/display?filename=${dto.imageDTOList[0].thumbnailURL}|" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">[[${dto.pname}]]</h5><br/>
+                        [[${dto.avg}]]
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
 </html>

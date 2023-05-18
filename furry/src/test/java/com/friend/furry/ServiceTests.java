@@ -1,8 +1,8 @@
 package com.friend.furry;
 
-import com.friend.furry.security.dto.MemberJoinDTO;
-import com.friend.furry.service.MemberService;
-import com.friend.furry.service.ProductService;
+import com.friend.furry.member.dto.MemberJoinDTO;
+import com.friend.furry.member.service.MemberService;
+import com.friend.furry.product.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

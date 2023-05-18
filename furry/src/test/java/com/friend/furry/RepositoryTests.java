@@ -1,10 +1,14 @@
 package com.friend.furry;
 
-import com.friend.furry.model.*;
-import com.friend.furry.repository.MemberRepository;
-import com.friend.furry.repository.ProductImageRepository;
-import com.friend.furry.repository.ProductRepository;
-import com.friend.furry.repository.ReviewRepository;
+import com.friend.furry.comment.entity.Comment;
+import com.friend.furry.member.entity.Member;
+import com.friend.furry.member.entity.MemberRole;
+import com.friend.furry.member.repository.MemberRepository;
+import com.friend.furry.product.entity.Product;
+import com.friend.furry.product.entity.ProductImage;
+import com.friend.furry.product.repository.ProductImageRepository;
+import com.friend.furry.product.repository.ProductRepository;
+import com.friend.furry.comment.repository.CommentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -130,7 +134,7 @@ public class RepositoryTests {
     }
 
     @Autowired
-    private ReviewRepository reviewRepository;
+    private CommentRepository commentRepository;
 
 
 
@@ -148,13 +152,13 @@ public class RepositoryTests {
             Member member = Member.builder()
                     .mid(mid)
                     .build();
-            Review review = Review.builder()
+            Comment comment = Comment.builder()
                     .product(product)
                     .member(member)
                     .rgrade((int)(Math.random()*5)+1)
                     .rtext("상품 리뷰..." + i)
                     .build();
-            reviewRepository.save(review);
+            commentRepository.save(comment);
         });
     }
 
@@ -163,10 +167,10 @@ public class RepositoryTests {
     public void getReviews(){
         Product product =Product.builder()
                 .pid(10L).build();
-        List<Review> result = reviewRepository.findByProduct(product);
-        result.forEach(review -> {
-            System.out.println(review.getRid());
-            System.out.println(review.getMember().getEmail());
+        List<Comment> result = commentRepository.findByProduct(product);
+        result.forEach(comment -> {
+            System.out.println(comment.getRid());
+            System.out.println(comment.getMember().getEmail());
         });
     }
 
@@ -174,6 +178,6 @@ public class RepositoryTests {
     @Transactional
     @Commit
     public void updateByMember(){
-        reviewRepository.updateByMember(3L);
+        commentRepository.updateByMember(3L);
     }
 }
