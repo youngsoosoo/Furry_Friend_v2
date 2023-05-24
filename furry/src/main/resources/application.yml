@@ -1,0 +1,4 @@
+spring:
+  config:
+    import:
+      - classpath:furry_friend_v2_submodule/application.yml

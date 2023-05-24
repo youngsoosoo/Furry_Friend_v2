@@ -1,0 +1,3 @@
+[submodule "furry/src/main/resources/furry_friend_v2_submodule"]
+	path = furry/src/main/resources/furry_friend_v2_submodule
+	url = https://github.com/youngsoosoo/furry_friend_v2_submodule.git

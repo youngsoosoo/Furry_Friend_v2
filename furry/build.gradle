@@ -25,10 +25,6 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 	implementation 'com.google.code.gson:gson:2.9.1'
 
-	// Cloud Gateway 관련 의존성 추가
-//	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-//	implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
-
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'

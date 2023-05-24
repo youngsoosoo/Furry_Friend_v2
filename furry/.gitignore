@@ -18,7 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-application.yml
+*/furry_friend_v2_submodule/application.yml
 .idea
 *.jpg
 *.png
