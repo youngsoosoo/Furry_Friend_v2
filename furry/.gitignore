@@ -21,6 +21,7 @@ bin/
 application.yml
 .idea
 *.jpg
+*.png
 *.iws
 *.iml
 *.ipr

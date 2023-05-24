@@ -36,6 +36,8 @@ public class Member extends BaseEntity {
     //로그인 정보
     private boolean social;
 
+    private String refreshToken;
+
     //권한 -여러 개의 권한을 소유
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
@@ -45,24 +47,12 @@ public class Member extends BaseEntity {
         this.mpw = mpw;
     }
 
-    public void changeEmail(String email){
-        this.email = email;
-    }
-
-    public void changeDel(boolean del){
-        this.del = del;
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
     //권한 추가
     public void addRole(MemberRole memberRole){
         this.roleSet.add(memberRole);
-    }
-    //권한 삭제
-    public void clearRoles(){
-        this.roleSet.clear();
-    }
-
-    public void changeSocial(boolean social){
-        this.social = social;
     }
 }

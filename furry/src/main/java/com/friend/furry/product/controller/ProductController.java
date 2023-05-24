@@ -1,7 +1,11 @@
 package com.friend.furry.product.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
+import com.friend.furry.member.service.TokenService;
 import com.friend.furry.product.dto.PageRequestDTO;
 import com.friend.furry.product.dto.PageResponseDTO;
 import com.friend.furry.product.dto.ProductDTO;
@@ -23,7 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ProductController {
     private final ProductService productService;
 
-    private final HttpSession session;
+    private final TokenService tokenService;
 
     @GetMapping("/register")
     public void register(){
@@ -31,9 +35,10 @@ public class ProductController {
     }
 
     @PostMapping("/register")
-    public String register(ProductDTO productDTO, RedirectAttributes redirectAttributes){
+    public String register(ProductDTO productDTO, RedirectAttributes redirectAttributes, HttpServletRequest request){
         log.info("productDTO:" + productDTO);
-        productDTO.setMid((Long)session.getAttribute("mid"));
+        productDTO.setMid(tokenService.usageToken(Arrays.stream(request.getCookies()).filter(cookie -> "access_token".equals(cookie.getName())).findFirst().map(
+            Cookie::getValue).orElse(null)));
         Long pid = productService.register(productDTO);
         redirectAttributes.addFlashAttribute("msg", pid + "삽입 성공");
         return "redirect:/product/list";
@@ -45,9 +50,11 @@ public class ProductController {
         model.addAttribute("result", pageResponseDTO);
     }
     @GetMapping("/read")
-    public void read(Long pid, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model){
+    public void read(Long pid, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, HttpServletRequest request){
         ProductDTO productDTO = productService.getProduct(pid);
         model.addAttribute("dto", productDTO);
-        model.addAttribute("mid", session.getAttribute("mid"));
+        model.addAttribute("mid", tokenService.usageToken(
+            Arrays.stream(request.getCookies()).filter(cookie -> "access_token".equals(cookie.getName())).findFirst().map(
+                Cookie::getValue).orElse(null)));
     }
 }

@@ -3,13 +3,12 @@ package com.friend.furry.basket.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.friend.furry.basket.entity.Basket;
 import com.friend.furry.member.entity.Member;
+import com.friend.furry.member.service.TokenService;
 import com.friend.furry.product.dto.ProductDTO;
 import com.friend.furry.product.dto.ProductImageDTO;
 import com.friend.furry.product.entity.Product;
@@ -34,14 +33,17 @@ public class BasketService {
 
     private final MemberRepository memberRepository;
 
+    private final TokenService tokenService;
+
     // 현재 사용자 찾기
     public Member findMember(Long mid){
         return memberRepository.findByMid(mid);
     }
 
     // 장바구니 읽어오기
-    public BasketResponseDTO findBasketList(Long mid){
+    public BasketResponseDTO findBasketList(String token){
         try {
+            Long mid = tokenService.usageToken(token);
             List<Object []> result = basketRepository.basketByMember(mid);
 
             Product product = (Product) result.get(0)[1];
@@ -62,13 +64,13 @@ public class BasketService {
 
     // 장바구니 삭제하기
     @Transactional
-    public void deleteBasketItem(BasketRequestDTO basketRequestDTO, Long mid){
-        basketRepository.deleteBasketByBasket_id(basketRequestDTO.getBid(), mid);
+    public void deleteBasketItem(BasketRequestDTO basketRequestDTO, String token){
+        basketRepository.deleteBasketByBasket_id(basketRequestDTO.getBid(), tokenService.usageToken(token));
     }
 
-    public void saveBasket(String pname, Long mid){
+    public void saveBasket(String pname, String token){
         Product product = productRepository.findProductByPname(pname);
-        Member member = findMember(mid);
+        Member member = findMember(tokenService.usageToken(token));
         Basket basket = Basket.builder()
             .product(product)
             .member(member).build();
@@ -94,13 +96,10 @@ public class BasketService {
             .imageDTOList(productImageDTOList)
             .build();
 
-        BasketResponseDTO basketResponseDTO = BasketResponseDTO.builder()
+        return BasketResponseDTO.builder()
             .bid(bid)
             .productDTO(productDTO)
             .mid(mid)
             .build();
-
-
-        return basketResponseDTO;
     }
 }

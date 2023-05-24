@@ -21,8 +21,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpSession;
-
 @Log4j2
 @Service
 @RequiredArgsConstructor
@@ -90,9 +88,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         }
     }
 
-    //HttpSession을 필드로 추가
-    private final HttpSession session;
-
     //로그인 성공했을 때 호출되는 메서드
     //이메일을 가진 사용자를 찾아보고 존재하지 않다면 자동으로 회원가입 시키는 메서드 반환 generateDTO
     @Override
@@ -105,7 +100,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         //계정에 대한 정보 가져오기
         OAuth2User oAuth2User = super.loadUser(userRequest);
         Map<String, Object> paramMap = oAuth2User.getAttributes();
-        log.info("paramMap:"+paramMap);
+
         String email = null;
         String name = null;
         switch (clientName.toLowerCase()){
@@ -118,11 +113,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 email = (String)paramMap.get("email");
                 break;
         }
-        log.info("email:"+email);
-        MemberSecurityDTO memberSecurityDTO = generateDTO(email, name, paramMap);
-        Optional<Member> result = memberRepository.findByEmail(email);
-        session.setAttribute("mid", result.get().getMid());
 
+        MemberSecurityDTO memberSecurityDTO = generateDTO(email, name, paramMap);
 
         return memberSecurityDTO;
     }

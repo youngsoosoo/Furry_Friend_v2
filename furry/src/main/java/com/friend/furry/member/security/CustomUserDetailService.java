@@ -15,17 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpSession;
-
 @Log4j2
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
-
-    //HttpSession을 필드로 추가
-    private final HttpSession session;
 
     //아이디를 입력하고 로그인 요청을 하게 되면 아이디에 해당하는 데이터를 찾아오는 메서드
     //로그인 처리를 해주어야 함
@@ -44,8 +39,6 @@ public class CustomUserDetailService implements UserDetailsService {
                 member.getMpw(), member.getEmail(), member.getName(), member.getAddress(), member.getPhone(),
                 member.isDel(), false, member.getRoleSet().stream().map(memberRole -> new SimpleGrantedAuthority(
                 "ROLE_" + memberRole.name())).collect(Collectors.toList()));
-
-        session.setAttribute("mid", result.get().getMid());
 
         return memberSecurityDTO;
     }

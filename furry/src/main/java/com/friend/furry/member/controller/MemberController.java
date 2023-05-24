@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/member")
 //member와 관련된 요청을 처리할 메서드
 public class MemberController {
+
     @GetMapping("/login")
     //logout은 로그아웃 한 후 로그인으로 이동했을 때의 파라미터
     public void login(String logout){

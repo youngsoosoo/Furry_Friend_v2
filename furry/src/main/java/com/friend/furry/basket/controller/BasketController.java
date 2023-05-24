@@ -1,7 +1,9 @@
 package com.friend.furry.basket.controller;
 
-import java.util.List;
+import java.util.Arrays;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
@@ -11,13 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.friend.furry.basket.dto.BasketRequestDTO;
 import com.friend.furry.basket.dto.BasketResponseDTO;
 import com.friend.furry.basket.service.BasketService;
+import com.friend.furry.member.service.TokenService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -30,10 +33,13 @@ public class BasketController {
 
     private final BasketService basketService;
 
+    private final TokenService tokenService;
+
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/basket")
-    public void basket(HttpSession session, Model model){
-        BasketResponseDTO basketResponseDTO = basketService.findBasketList((long) session.getAttribute("mid"));
+    public void basket(Model model, HttpServletRequest request){
+        BasketResponseDTO basketResponseDTO = basketService.findBasketList(Arrays.stream(request.getCookies()).filter(cookie -> "access_token".equals(cookie.getName())).findFirst().map(
+            Cookie::getValue).orElse(null));
         try {
             log.warn(basketResponseDTO);
             model.addAttribute("li", basketResponseDTO);
@@ -44,22 +50,24 @@ public class BasketController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/basket")
-    public String basketSave(@RequestParam(value = "pname") String pname, HttpSession session){
+    public String basketSave(@RequestParam(value = "pname") String pname, HttpServletRequest request){
 
-        basketService.saveBasket(pname, (long) session.getAttribute("mid"));
+        basketService.saveBasket(pname, Arrays.stream(request.getCookies()).filter(cookie -> "access_token".equals(cookie.getName())).findFirst().map(
+            Cookie::getValue).orElse(null));
 
         return "redirect:/basket/basket";
     }
 
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/basket")
-    public ResponseEntity<String> basketDelete(@RequestParam(value = "bid") Long bid, HttpSession session) {
+    public ResponseEntity<String> basketDelete(@RequestParam(value = "bid") Long bid, HttpServletRequest request) {
 
         try {
             BasketRequestDTO basketRequestDTO = BasketRequestDTO.builder()
                 .bid(bid)
                 .build();
-            basketService.deleteBasketItem(basketRequestDTO, (Long) session.getAttribute("mid"));
+            basketService.deleteBasketItem(basketRequestDTO, Arrays.stream(request.getCookies()).filter(cookie -> "access_token".equals(cookie.getName())).findFirst().map(
+                Cookie::getValue).orElse(null));
 
             String redirectUrl = "/basket/basket"; // 리다이렉트할 URL
             return ResponseEntity.ok().body(redirectUrl);
